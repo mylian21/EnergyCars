@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
                     <table class="table">
@@ -65,7 +65,10 @@
                                     <td> {{MARC_NOMBRE}} </td>
                                     <td> {{MOD_NOMBRE}} </td>
                                     <td> {{TC_NOMBRE}} </td>
-                                    {{!-- <td> <a href="/admin/eliminar/{{ID_MARCA_MODELO}}" class="btn btn-danger">Eliminar</a> </td> --}}
+                                    <td>
+                                        <a href="/admin/eliminar/{{this.ID_MARCA_MODELO}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta relacion?')">Eliminar</a>
+                                        <a href="/admin/editar/{{this.ID_MARCA_MODELO}}" class="btn btn-success btn-sm">Editar</a>
+                                    </td>
                                 </tr>
                             {{/each}}
                     </table>
