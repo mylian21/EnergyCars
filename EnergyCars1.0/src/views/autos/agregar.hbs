@@ -4,36 +4,73 @@
             <div class="card">
                 <div class="card-body">
                     <form action="/autos/agregar" method="POST">
-                        <div class="form-group">
-                            <label for="veh_marca" class="form-label">Marca:</label>
-                            <select id="veh_marca" class="form-control" name="veh_marca" onchange="">
+
+
+                        <div class="form-group my-3">
+                            <label for="marc_nombre" class="form-label">Marca:</label>
+                            <select id="marc_nombre" class="form-control" name="marc_nombre" required>
                                 <option value="" disabled selected>Selecciona una marca</option>
-                                {{#each marca_modeloAgregar}}
-                                <option value="{{MARC_NOMBRE}}">{{MARC_NOMBRE}}</option>
+                                {{#each marcas}}
+                                <option value="{{ID_MARCA}}">{{MARC_NOMBRE}}</option>
                                 {{/each}}
                             </select>
-                        </div>                            
+                        </div>
+
                         <div class="form-group my-3">
-                            <label for="veh_modelo" class="form-label">Modelo:</label>
-                            <select id="veh_modelo" class="form-control" name="veh_modelo">
+                            <label for="mod_nombre" class="form-label">Modelo:</label>
+                            <select id="mod_nombre" class="form-control" name="mod_nombre">
                                 <option value="" disabled selected>Selecciona un modelo</option>
+                                {{#each modelos}}
+                                <option value="{{ID_MODELO}}">{{MOD_NOMBRE}}</option>
+                                {{/each}}
                             </select>
                         </div>
                         <div class="form-group my-3">
-                            <label for="veh_anio" class="form-label">Año:</label>
-                            <input type="text" id="veh_anio" class="form-control" name="veh_anio" placeholder="Ej: 20XX">
+                            <label for="anio" class="form-label">Año:</label>
+                            <select type="text" id="anio" class="form-control" name="anio">
+                                <option value="" disabled selected>Selecciona un año</option>
+                                {{#each anio}}
+                                <option value="{{ID_ANIO}}">{{ANIO}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                         <div class="form-group my-3">
                             <label for="veh_patente" class="form-label">Patente:</label>
-                            <input type="text" id="veh_patente" class="form-control" name="veh_patente" placeholder="Ej: ABC-123">
+                            <input type="text" id="veh_patente" class="form-control" name="veh_patente"
+                                placeholder="Ej: ABC-123">
                         </div>
                         <div class="form-group d-grid my-3">
-                            <button class="btn btn-success">REGISTRAR</button>
-                        </div>                        
+                            <button class="btn btn-success">REGISTAR</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('marc_nombre').addEventListener('change', async function () {
+        const idMarca = this.value;
+
+        if (idMarca) {
+            try {
+                const response = await fetch(`/autos/modelos/${idMarca}`);
+                const modelos = await response.json();
+
+                const selectModelos = document.getElementById('mod_nombre');
+                selectModelos.innerHTML = '<option value="" disabled selected>Selecciona un modelo</option>'; // Limpiar el select
+
+                modelos.forEach(modelo => {
+                    const option = document.createElement('option');
+                    option.value = modelos.ID_MODELO;
+                    option.textContent = modelos.MOD_NOMBRE;
+                    selectModelos.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error al obtener modelos:', error);
+            }
+        }
+    });
+</script>
 

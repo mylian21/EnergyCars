@@ -5,18 +5,11 @@ const pool =  require('../database');
 const {isLoggedIn} = require('../lib/auth')
 
 router.get('/agregar', isLoggedIn, async (req, res) => {
-    const marca_modeloAgregar = await pool.query(`
-        SELECT 
-            marca_modelo.ID_MARCA_MODELO, 
-            marcas.MARC_NOMBRE, 
-            modelos.MOD_NOMBRE,
-            tipos_conectores.TC_NOMBRE 
-            FROM marca_modelo 
-            JOIN marcas ON marca_modelo.ID_MARCA = marcas.ID_MARCA
-            JOIN modelos ON marca_modelo.ID_MODELO = modelos.ID_MODELO
-            JOIN tipos_conectores ON marca_modelo.ID_TC = tipos_conectores.ID_TC ;
-        `)
-    res.render('autos/agregar', {marca_modeloAgregar});
+    const anio = await pool.query('SELECT * FROM anio');
+    const marcas = await pool.query('SELECT * FROM marcas');
+    const modelos = await pool.query('SELECT * FROM modelos');
+    const marca_modelo = await pool.query('SELECT * FROM marca_modelo');
+    res.render('autos/agregar', {marca_modelo,marcas,modelos, anio});
 });
 
 router.post('/agregar', isLoggedIn, async (req, res) => {
