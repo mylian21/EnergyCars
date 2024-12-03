@@ -1,46 +1,50 @@
-<div class="row p-5"> 
-    <div class="col-md-5 mx-auto">
-        <div class="">
-            <div class="card-body">
-                <h3>Estaciones de Carga</h3>
+<div class="container p-8">
+    <div class="row p-5">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4">Estaciones de Carga</h4>
                     <form action="/admin/gestionEstaciones" method="POST">
-                        <div>
-                            <label for="estc_nombre">Nombre de la Estación:</label>
-                            <input type="text" name="estc_nombre" id="estc_nombre" required>
+                        <div class="form-group my-3">
+                            <label for="estc_nombre" class="form-label">Nombre de la Estación:</label>
+                            <input type="text" name="estc_nombre" id="estc_nombre" class="form-control" required>
                         </div>
-                        <div>
-                            <label for="estc_direccion">Dirección:</label>
-                            <input type="text" name="estc_direccion" id="estc_direccion" required>
+                        <div class="form-group my-3">
+                            <label for="estc_direccion" class="form-label">Dirección:</label>
+                            <input type="text" name="estc_direccion" id="estc_direccion" class="form-control" required>
                         </div>
-                        <div>
-                            <label for="estc_localidad">Localidad:</label>
-                            <input type="text" name="estc_localidad" id="estc_localidad" required>
+                        <div class="form-group my-3">
+                            <label for="estc_localidad" class="form-label">Localidad:</label>
+                            <input type="text" name="estc_localidad" id="estc_localidad" class="form-control" required>
                         </div>
-                        <div>
-                            <label for="estc_cant_surtidores">Cantidad de Surtidores:</label>
-                            <input type="number" name="estc_cant_surtidores" id="estc_cant_surtidores" required>
+                        <div class="form-group my-3">
+                            <label for="estc_cant_surtidores" class="form-label">Cantidad de Surtidores:</label>
+                            <input type="number" name="estc_cant_surtidores" id="estc_cant_surtidores" class="form-control" required>
                         </div>
-                        <div>
-                            <label for="id_provincia">Provincia:</label>
-                            <select name="id_provincia" required>
+                        <div class="form-group my-3">
+                            <label for="id_provincia" class="form-label">Provincia:</label>
+                            <select name="id_provincia" id="id_provincia" class="form-control" required>
                                 <option value="" disabled selected>Selecciona una provincia</option>
                                 {{#each provincias}}
                                     <option value="{{this.ID_PROVINCIA}}">{{this.PROVINCIA_NOMBRE}}</option>
                                 {{/each}}
                             </select>
                         </div>
-                        <div>
-                            <label for="estc_latitud">Latitud:</label>
-                            <input type="text" name="estc_latitud" id="estc_latitud" required>
+                        <div class="form-group my-3">
+                            <label for="estc_latitud" class="form-label">Latitud:</label>
+                            <input type="text" name="estc_latitud" id="estc_latitud" class="form-control" required>
                         </div>
-                        <div>
-                            <label for="estc_longitud">Longitud:</label>
-                            <input type="text" name="estc_longitud" id="estc_longitud" required>
+                        <div class="form-group my-3">
+                            <label for="estc_longitud" class="form-label">Longitud:</label>
+                            <input type="text" name="estc_longitud" id="estc_longitud" class="form-control" required>
                         </div>
-                        <button class="btn btn-success m-1">Crear Estacion</button>
+                        <div class="d-grid">
+                            <button class="btn btn-success btn-block">Crear Estación</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
