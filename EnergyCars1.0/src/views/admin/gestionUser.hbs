@@ -1,31 +1,61 @@
-<div class="container p-4">
-    <div class="row">
+<h2>Listado de Usuarios</h2> 
 
-        {{#each adminuser}}
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">
-                            {{USER_NOMBRE}} {{USER_APELLIDO}}
-                        </h3>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">
-                            {{USER_CORREO}}
-                        </h6>
-                        <p class="card-text">
-                            Telefono: {{USER_TELEFONO}}
-                        </p>
-                        <a href="/admin/eliminar/{{ID_USER}}" class="btn btn-danger">ELIMINAR</a> {{!-- Fecha min 1:25 --}}
-                        <a href="/admin/editarAdminUser/{{ID_USER}}" class="btn btn-secondary">EDITAR</a>
-                    </div>
-                </div>
-            </div>
-        {{else}}
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay usuarios agregados.</p>
-                </div>
-            </div>
-        {{/each}}
-
-    </div>
+<div style="position: relative; width: 100%; max-width: 400px;">
+    <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar por nombre, correo o teléfono"
+        style="width: 100%; padding-right: 40px;"
+        class="form-control"
+    />
+    <i class="fas fa-search" 
+       style="
+            position: absolute; 
+            right: 10px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            color: #6c757d; 
+            font-size: 1.2rem; 
+            cursor: pointer;">
+    </i>
 </div>
+<br>
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody id="tabla-usuarios">
+        {{#each adminuser}}
+        <tr>
+            <td>{{this.ID_USER}}</td>
+            <td>{{this.USER_NOMBRE}}</td>
+            <td>{{this.USER_APELLIDO}}</td>
+            <td>{{this.USER_CORREO}}</td>
+            <td>{{this.USER_TELEFONO}}</td>
+            <td>
+                <a href="/admin/eliminar/{{this.ID_USER}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
+                <a href="/admin/editarAdminUser/{{this.ID_USER}}" class="btn btn-success btn-sm">Editar</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('buscador').addEventListener('input', function () {
+        const filtro = this.value.toLowerCase();
+        const filas = document.querySelectorAll('#tabla-usuarios tr');
+
+        filas.forEach((fila) => {
+            const textoFila = fila.textContent.toLowerCase();
+            fila.style.display = textoFila.includes(filtro) ? '' : 'none';
+        });
+    });
+</script> 
