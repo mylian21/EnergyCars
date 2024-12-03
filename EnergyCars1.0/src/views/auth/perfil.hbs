@@ -1,0 +1,17 @@
+<div class="container p-4">
+    <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Nombre: {{user.USER_NOMBRE}} </h5>
+                        <h5>Apellido: {{user.USER_APELLIDO}} </h5>
+                        <h5>Correo: {{user.USER_CORREO}} </h5>
+                        <h5>Telefono: {{user.USER_TELEFONO}} </h5>
+                        <div class="container text-center ">
+                            <a href="/auth/editarUser/{{user.ID_USER}}" class="btn btn-success btn-block">EDITAR PERFIL</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

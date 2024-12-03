@@ -1,0 +1,36 @@
+<div class="container p-4">
+    <div class="row">
+
+        {{#each reservas}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase">
+                            {{ESTC_NOMBRE}}
+                        </h3>
+                            <p>{{ESTC_DIRECCION}} - {{ESTC_LOCALIDAD}} </p>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                            Fecha: {{RESERVA_FECHA}}
+                        </h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                            Tiempo de carga: {{RESERVA_HORA_INI}} - {{RESERVA_HORA_FIN}}
+                        </h6>
+                        <p class="card-text">
+                            Precio: {{RESERVA_IMPORTE}}
+                        </p>
+                        <a href="/auth/eliminar/{{ID_RESERVA}}" class="btn btn-danger">ELIMINAR</a> {{!-- Fecha min 1:25 --}}
+                        <a href="/auth/editar/{{ID_RESERVA}}" class="btn btn-secondary">EDITAR</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay reservas.</p>
+                    <a href="/auth/reserva">Agrega una.</a>
+                </div>
+            </div>
+        {{/each}}
+
+    </div>
+</div>

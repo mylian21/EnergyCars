@@ -1,0 +1,49 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/admin/gestionReservas" method="POST">
+
+
+                        <div class="form-group my-3">
+                            <label for="veh_marca" class="form-label">Marca:</label>
+                            <select id="veh_marca" class="form-control" name="veh_marca" required>
+                                <option value="" disabled selected>Selecciona una marca</option>
+                                {{#each marcas}}
+                                <option value="{{ID_MARCA}}">{{MAR_NOMBRE}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-group my-3">
+                            <label for="veh_modelo" class="form-label">Modelo:</label>
+                            <select id="veh_modelo" class="form-control" name="veh_modelo">
+                                <option value="" disabled selected>Selecciona un modelo</option>
+                                {{#each modelos}}
+                                <option value="{{ID_MODELO}}">{{MOD_NOMBRE}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="veh_anio" class="form-label">Año:</label>
+                            <select type="text" id="veh_anio" class="form-control" name="veh_anio">
+                                <option value="" disabled selected>Selecciona un año</option>
+                                {{#each modelos}}
+                                <option value="{{ID_ANIO}}">{{N_ANIO}}</option>
+                                {{/each}}
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="veh_patente" class="form-label">Patente:</label>
+                            <input type="text" id="veh_patente" class="form-control" name="veh_patente"
+                                placeholder="Ej: ABC-123">
+                        </div>
+                        <div class="form-group d-grid my-3">
+                            <button class="btn btn-success">REGISTAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

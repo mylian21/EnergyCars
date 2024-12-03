@@ -1,0 +1,32 @@
+<div class="container p-4">
+    <div class="row">
+
+        {{#each vehiculos}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase">
+                            {{VEH_MARCA}}
+                        </h3>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                            {{VEH_MODELO}} - {{VEH_ANIO}}
+                        </h6>
+                        <p class="card-text">
+                            Patente: {{VEH_PATENTE}}
+                        </p>
+                        <a href="/autos/eliminar/{{ID_VEH}}" class="btn btn-danger">ELIMINAR</a> {{!-- Fecha min 1:25 --}}
+                        <a href="/autos/editar/{{ID_VEH}}" class="btn btn-secondary">EDITAR</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay autos agregados.</p>
+                    <a href="/autos/agregar">Agrega uno.</a>
+                </div>
+            </div>
+        {{/each}}
+
+    </div>
+</div>

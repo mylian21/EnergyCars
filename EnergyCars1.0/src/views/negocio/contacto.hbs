@@ -1,0 +1,32 @@
+<div class="text-center">    
+    <h3 class="colorBlue">Envíanos tu mensaje</h3>
+    <p class="colorGreen">Nuestro equipo se pondrá en contacto contigo</p>
+</div>
+<div class="container p-4">
+    <div class="row">
+        <div class="col mx-auto">
+            <div class="">
+                <div class="card-body">
+                    <form action="/negocio/contacto" method="POST">
+                        <div class="form-group">                            
+                            <input type="text" id="nombre-apellido" class="form-control" name="nombre-apellido" placeholder="Nombre y Apellido">
+                        </div>                            
+                        <div class="form-group my-3">
+                            <input type="text" id="e-mail" class="form-control" name="e-mail" placeholder="E-mail">
+                            </select>
+                        </div>
+                        <div class="form-group my-3">
+                            <input type="text" id="asunto" class="form-control" name="asunto" placeholder="Asunto">
+                        </div>
+                        <div class="form-group my-3">
+                            <textarea name="mensaje" id="mensaje" class="form-control" placeholder="Mensaje" rows="4" cols="40"></textarea>
+                        </div>
+                        <div class="form-group d-grid my-3">
+                            <button class="btn btn-success">ENVIAR</button>
+                        </div>                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

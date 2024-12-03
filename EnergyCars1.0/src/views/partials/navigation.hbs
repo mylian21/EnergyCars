@@ -1,0 +1,153 @@
+{{#if (eq user.ID_USER 1)}}
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <!-- Menú Lateral -->
+            <div class="col-md-3 bg-light border-end barUser">
+                <div class="p-4">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <img src="/img/imagen1.png" alt="EnergyCars" height="45">
+                        </a>
+                    </div>
+                    <ul class="nav flex-column my-5">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/admin">Gestionar usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin/gestionReservas">Gestionar reservas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/gestionautos">Gestionar vehiculos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/gestionEstaciones">Gestionar Estaciones de Carga</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Gestionar Transacciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Gestionar Notificaciones y Comunicaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cerrar">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contenido Principal -->
+            <div class="col-md-9">
+                <div class="d-flex flex-row-reverse">
+                    <div class="p-2">Hola, {{user.USER_NOMBRE}} {{user.USER_APELLIDO}} </div>
+                </div>
+                                
+                <div class="p-2">
+                    {{> mensajes}}
+                    {{{ body }}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{else if (mayor user.ID_USER 1)}}
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <!-- Menú Lateral -->
+            <div class="col-md-3 bg-light border-end barUser">
+                <div class="p-4">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <img src="/img/imagen1.png" alt="EnergyCars" height="45">
+                        </a>
+                    </div>
+                    <ul class="nav flex-column m-5">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Mis vehículos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/autos">Vehículos</a></li>
+                                <li><a class="dropdown-item" href="/autos/agregar">Agregar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Estaciones de carga
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/auth/mapa">Mapa</a></li>
+                                <li><a class="dropdown-item" href="/auth/listarestaciones">Ver listado</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Reservas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/auth/listarReserva">Listar reserva</a></li>
+                                <li><a class="dropdown-item" href="/auth/reserva">Realizar reserva</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/perfil">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cerrar">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contenido Principal -->
+            <div class="col-md-9">
+                <div class="d-flex flex-row-reverse">
+                    <div class="p-2">Hola, {{user.USER_NOMBRE}} {{user.USER_APELLIDO}} </div>
+                </div>
+                                
+                <div class="p-2">
+                    {{> mensajes}}
+                    {{{ body }}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{else}}
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <nav class="navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="/">
+                        <img src="/img/imagen1.png" alt="EnergyCars" height="45">
+                    </a>
+                </div>
+            </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" style="color: #004aad;"><b>INICIO</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/negocio/sobreNosotros" style="color: #008037;"><b>SOBRE NOSOTROS</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/negocio/contacto" style="color: #004aad;"><b>CONTACTO</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/acceso" style="color: #008037;"><b>INICIAR SESIÓN</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="">
+        {{> mensajes}}
+        {{{ body }}}
+    </div>
+
+{{/if}}
+

@@ -1,0 +1,58 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/auth/reserva" method="POST">
+                        <h5 class="card-title text-center">Reserva</h5>
+                        <div class="form-group my-3">
+                            <label for="estc_nom_direcc" class="form-label">Estación de carga:</label>
+                            <select id="estc_nom_direcc" class="form-control" name="estc_nom_direcc" required onchange="actualizarIdEstc(this.value)">
+                                {{#if estacionCarga}}
+                                    <option value="" disabled selected>Selecciona un estación</option>
+                                    {{#each estacionCarga}}
+                                    <option value="{{ID_ESTC}}">{{ESTC_NOMBRE}} - {{ESTC_DIRECCION}}</option>
+                                    {{/each}}
+                                {{else}}
+                                    {{#each estacionCargaID_ESTC}}
+                                    <option value="{{ID_ESTC}}">{{ESTC_NOMBRE}} - {{ESTC_DIRECCION}}</option>
+                                    {{/each}}
+                                {{/if}}
+                            </select>
+                            <input type="hidden" name="ID_ESTC" id="ID_ESTC">
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="reserva_fecha" class="form-label">Fecha:</label>
+                            <input type="date" id="reserva_fecha" class="form-control" name="reserva_fecha">
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="reserva_hora_ini" class="form-label">Hora de inicio:</label>
+                            <input type="time" id="reserva_hora_ini" class="form-control" name="reserva_hora_ini">
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="reserva_hora_time" class="form-label">Seleccione el tiempo de carga (minutos):</label>
+                            <select id="reserva_hora_time" name="reserva_hora_time" onchange="calcularHoraFin(), costoEstimado()" required>
+                                    <option value="" disabled selected>Seleccione tiempo</option>
+                                {{#each tiempo_carga}}
+                                    <option value="{{TIEMPO_CARGA}}">{{TIEMPO_CARGA}} minutos</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="reserva_hora_fin" class="form-label">Hora de finalización:</label>
+                            <input type="text" id="reserva_hora_fin" class="form-control" name="reserva_hora_fin" readonly>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="reserva_importe" class="form-label">Importe:</label>
+                            <input type="text" id="reserva_importe" class="form-control" name="reserva_importe" readonly>
+                        </div>
+                        <div class="form-group d-grid my-3">
+                            <button class="btn btn-success">ACEPTAR</button>
+                            <a href="/reserva" class="btn btn-danger my-2">CANCELAR</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Relacion Marcas, Modelos y Tipo de Conector</h3>
+                    <!-- Formulario para asociar una marca con un modelo y tipo de conector -->
+                    <form action="/admin/vermarcas" method="POST">
+                        <!-- Desplegable de Marcas -->
+                        <div class="form-group my-3">
+                            <label for="id_marca" class="form-label">Marca:</label>
+                            <select id="id_marca" class="form-control" name="id_marca" required>
+                                <option value="" disabled selected>Selecciona una marca</option>
+                                {{#each marcas}}
+                                    <option value="{{ID_MARCA}}">{{MARC_NOMBRE}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <!-- Desplegable de Modelos -->
+                        <div class="form-group my-3">
+                            <label for="id_modelo" class="form-label">Modelo:</label>
+                            <select id="id_modelo" class="form-control" name="id_modelo" required>
+                                <option value="" disabled selected>Selecciona un modelo</option>
+                                {{#each modelos}}
+                                    <option value="{{ID_MODELO}}">{{MOD_NOMBRE}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <!-- Desplegable de Tipos de Conector -->
+                        <div class="form-group my-3">
+                            <label for="id_tc" class="form-label">Tipo de Conector:</label>
+                            <select id="id_tc" class="form-control" name="id_tc" required>
+                                <option value="" disabled selected>Selecciona un tipo de conector</option>
+                                {{#each tipos_conectores}}
+                                    <option value="{{ID_TC}}">{{TC_NOMBRE}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-group d-grid my-3">
+                            <button class="btn btn-success">Guardar Relación</button>
+                            <a href="/admin/gestionautos" class="btn btn-danger my-2">Cancelar</a>
+                        </div>
+                    </form>  
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Tipo conector</th>
+                                <th scope="col">Acción</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each marca_modelo}}
+                                <tr>
+                                    <th scope="row"> {{ID_MARCA_MODELO}} </th>
+                                    <td> {{MARC_NOMBRE}} </td>
+                                    <td> {{MOD_NOMBRE}} </td>
+                                    <td> {{TC_NOMBRE}} </td>
+                                    {{!-- <td> <a href="/admin/eliminar/{{ID_MARCA_MODELO}}" class="btn btn-danger">Eliminar</a> </td> --}}
+                                </tr>
+                            {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                  
