@@ -1,66 +1,71 @@
-<div class="container p-4">
-    <div class="row">
-        <div class="mx-auto">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="card-title text-center">Estaciones</h5>
-                        </div>
-                        <div class="col-md-4">
-                            <form action="/buscar" method="GET" class="mb-4"> 
-                                <div class="input-group"> 
-                                    <input type="text" name="buscar" class="form-control" placeholder="Buscar estación..."> 
-                                    <button class="btn btn-outline-secondary" id="button-addon2">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div> 
-                            </form>
-                        </div>
-                    </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Localidad</th>
-                                <th scope="col">Provincia</th>                                
-                                <th scope="col">N° surtidores</th>                                
-                                <th scope="col">Acción</th>                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{!-- {{#each estacionesCarga}} --}}
-                            {{#if estacionesCarga}}
-                                {{#each estacionesCarga}}
-                                    <tr>
-                                        <th scope="row"> {{ID_ESTC}} </th>
-                                        <td> {{ESTC_NOMBRE}} </td>
-                                        <td> {{ESTC_DIRECCION}} </td>
-                                        <td> {{ESTC_LOCALIDAD}} </td>
-                                        <td> {{PROVINCIA_NOMBRE}} </td>
-                                        <td> {{ESTC_CANT_SURTIDORES}} </td>
-                                        <td> <form action="/reserva/estacion/{{ID_ESTC}}"> <button class="btn btn-success">RESERVAR</button> </form> </td>
-                                    </tr>
-                                {{/each}}
-                            {{else}}
-                                {{#each rows}}
-                                    <tr>
-                                        <th scope="row"> {{ID_ESTC}} </th>
-                                        <td> {{ESTC_NOMBRE}} </td>
-                                        <td> {{ESTC_DIRECCION}} </td>
-                                        <td> {{ESTC_LOCALIDAD}} </td>
-                                        <td> {{PROVINCIA_NOMBRE}} </td>
-                                        <td> {{ESTC_CANT_SURTIDORES}} </td>
-                                        <td> <form action=""> <button class="btn btn-success">RESERVAR</button> </form> </td>
-                                    </tr>
-                                {{/each}}
-                            {{/if}}
-                            {{!-- {{/each}} --}}
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<h2>Listado de Estaciones</h2>
+
+<div style="position: relative; width: 100%; max-width: 400px;">
+    <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar por nombre, dirección, localidad, provincia"
+        style="width: 100%; padding-right: 40px;"
+        class="form-control"
+    />
+    <i class="fas fa-search" 
+       style="
+            position: absolute; 
+            right: 10px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            color: #6c757d; 
+            font-size: 1.2rem; 
+            cursor: pointer;">
+    </i>
 </div>
+<br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Localidad</th>
+            <th scope="col">Provincia</th>
+            <th scope="col">N° surtidores</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody id="tabla-estacionesCarga">
+        {{#if estacionesCarga}}
+            {{#each estacionesCarga}}
+                <tr>
+                    <th scope="row">{{ID_ESTC}}</th>
+                    <td>{{ESTC_NOMBRE}}</td>
+                    <td>{{ESTC_DIRECCION}}</td>
+                    <td>{{ESTC_LOCALIDAD}}</td>
+                    <td>{{PROVINCIA_NOMBRE}}</td>
+                    <td>{{ESTC_CANT_SURTIDORES}}</td>
+                    <td>
+                        <form action="/reserva/estacion/{{ID_ESTC}}">
+                            <button class="btn btn-success">RESERVAR</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        {{else}}
+            <tr>
+                <td colspan="7">No hay estaciones disponibles.</td>
+            </tr>
+        {{/if}}
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('buscador').addEventListener('input', function () {
+        const filtro = this.value.toLowerCase();
+        const filas = document.querySelectorAll('#tabla-estacionesCarga tr');
+
+        filas.forEach((fila) => {
+            const textoFila = fila.textContent.toLowerCase();
+            fila.style.display = textoFila.includes(filtro) ? '' : 'none';
+        });
+    });
+</script>
