@@ -146,6 +146,8 @@ router.get('/gestionEstaciones', async (req, res) => {
     }
 });
 
+
+
 // Ruta para crear una estación de carga
 router.post('/gestionEstaciones', async (req, res) => {
     const {
@@ -166,16 +168,29 @@ router.post('/gestionEstaciones', async (req, res) => {
         }
 
         // Insertar la estación en la base de datos
-        await pool.query(
+        const result = await pool.query(
             'INSERT INTO estaciones_carga (ESTC_NOMBRE, ESTC_DIRECCION, ESTC_LOCALIDAD, ESTC_CANT_SURTIDORES, ID_PROVINCIA, ESTC_LATITUD, ESTC_LONGITUD) VALUES (?, ?, ?, ?, ?, ?, ?)', 
             [estc_nombre, estc_direccion, estc_localidad, estc_cant_surtidores, id_provincia, estc_latitud, estc_longitud]
         );
 
-        req.flash('success', 'Estación de carga creada exitosamente.');
+        // Obtener el ID de la estación recién creada
+        const idEstacion = result.insertId;
+
+        // Insertar los surtidores en la tabla surtidores
+        for (let i = 0; i < estc_cant_surtidores; i++) {
+            await pool.query(
+                'INSERT INTO surtidores (SURT_ESTADO, ID_ESTC) VALUES (?, ?)', 
+                [1, idEstacion]  // El estado se establece como 1 y se usa el ID de la estación
+            );
+        }
+
+        req.flash('success', 'Estación de carga y surtidores creados exitosamente.');
         res.redirect('/admin/gestionEstaciones');
     } catch (error) {
-        console.error('Error al crear estación de carga:', error);
-        req.flash('error', 'Ocurrió un error al crear la estación de carga.');
+        console.error('Error al crear estación de carga o surtidores:', error);
+        req.flash('error', 'Ocurrió un error al crear la estación de carga y los surtidores.');
+        res.redirect('/admin/gestionEstaciones');
     }
 });
+
 module.exports = router;
