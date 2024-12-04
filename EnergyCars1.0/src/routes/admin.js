@@ -192,5 +192,49 @@ router.post('/gestionEstaciones', async (req, res) => {
         res.redirect('/admin/gestionEstaciones');
     }
 });
+//Ruta para gestionar transacciones
+router.get('/gestiontransacciones', async(req, res)=>{
+    res.render('admin/gestiontransacciones');
+});
+
+//Ruta ver usuarios
+router.get('/verusuarios', async (req, res) => {
+    const { anio, mes, dia } = req.query;
+    let query = `
+        SELECT 
+            YEAR(USER_FECHA_REGISTRO) AS anio,
+            MONTH(USER_FECHA_REGISTRO) AS mes,
+            DAY(USER_FECHA_REGISTRO) AS dia,
+            USER_NOMBRE,
+            USER_APELLIDO,
+            USER_CORREO
+        FROM usuario
+        WHERE 1=1
+    `;
+
+    if (anio) query += ` AND YEAR(USER_FECHA_REGISTRO) = ${anio}`;
+    if (mes) query += ` AND MONTH(USER_FECHA_REGISTRO) = ${mes}`;
+    if (dia) query += ` AND DAY(USER_FECHA_REGISTRO) = ${dia}`;
+
+    const usuarios = await pool.query(query);
+
+    // Obtener la cantidad de registros filtrados
+    const totalRegistros = usuarios.length;
+
+    // Obtener valores únicos para los filtros
+    const anios = await pool.query('SELECT DISTINCT YEAR(USER_FECHA_REGISTRO) AS anio FROM usuario');
+    const meses = await pool.query('SELECT DISTINCT MONTH(USER_FECHA_REGISTRO) AS mes FROM usuario');
+    const dias = await pool.query('SELECT DISTINCT DAY(USER_FECHA_REGISTRO) AS dia FROM usuario');
+
+    res.render('admin/verusuarios', {
+        usuarios,
+        totalRegistros,
+        anios: anios.map(a => a.anio),
+        meses: meses.map(m => m.mes),
+        dias: dias.map(d => d.dia)
+    });
+});
+
+
 
 module.exports = router;

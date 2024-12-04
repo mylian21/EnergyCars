@@ -1,0 +1,57 @@
+<h1>Usuarios Registrados</h1>
+
+<!-- Filtros -->
+<form id="filtros" method="GET">
+    <label for="anio">Año:</label>
+    <select id="anio" name="anio" onchange="filtrar()">
+        <option value="">Todos</option>
+        {{#each anios}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <label for="mes">Mes:</label>
+    <select id="mes" name="mes" onchange="filtrar()">
+        <option value="">Todos</option>
+        {{#each meses}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <label for="dia">Día:</label>
+    <select id="dia" name="dia" onchange="filtrar()">
+        <option value="">Todos</option>
+        {{#each dias}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+</form>
+
+<!-- Total de registros -->
+<h2>Total de registros filtrados: {{totalRegistros}}</h2>
+
+<!-- Tabla de resultados -->
+<table>
+    <thead>
+        <tr>
+            <th>Año</th>
+            <th>Mes</th>
+            <th>Día</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each usuarios}}
+        <tr>
+            <td>{{this.anio}}</td>
+            <td>{{this.mes}}</td>
+            <td>{{this.dia}}</td>
+            <td>{{this.USER_NOMBRE}}</td>
+            <td>{{this.USER_APELLIDO}}</td>
+            <td>{{this.USER_CORREO}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
