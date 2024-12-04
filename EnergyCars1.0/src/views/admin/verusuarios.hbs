@@ -1,25 +1,29 @@
 <h2>Usuarios Registrados</h2>
 
-<div style="position: relative; width: 100%; max-width: 400px;">
+<div style="display: flex; gap: 10px; margin-bottom: 15px;">
     <input
         type="text"
-        id="buscador"
-        placeholder="Buscar por Año, Mes o Dia"
-        style="width: 100%; padding-right: 40px;"
+        id="buscadorAnio"
+        placeholder="Buscar por Año"
         class="form-control"
+        style="flex: 1;"
     />
-    <i class="fas fa-search" 
-       style="
-            position: absolute; 
-            right: 10px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            color: #6c757d; 
-            font-size: 1.2rem; 
-            cursor: pointer;">
-    </i>
+    <input
+        type="text"
+        id="buscadorMes"
+        placeholder="Buscar por Mes"
+        class="form-control"
+        style="flex: 1;"
+    />
+    <input
+        type="text"
+        id="buscadorDia"
+        placeholder="Buscar por Día"
+        class="form-control"
+        style="flex: 1;"
+    />
 </div>
-<br>
+
 <!-- Tabla de resultados -->
 <table class="table table-striped table-bordered" id="tablaUsuarios">
     <thead class="thead-dark">
@@ -45,45 +49,47 @@
         {{/each}}
     </tbody>
 </table>
-<br>
-<!-- Total de registros -->
+
 <h3 id="totalRegistros">
     Total de registros: {{totalRegistros}}
 </h3>
-
-
-{{!-- <script>
-    document.getElementById('buscador').addEventListener('input', function () {
-        const filtro = this.value.toLowerCase();
-        const filas = document.querySelectorAll('#tablaUsuarios tr');
+<script>
+        function filtrarTabla() {
+        const filtroAnio = document.getElementById('buscadorAnio').value.toLowerCase();
+        const filtroMes = document.getElementById('buscadorMes').value.toLowerCase();
+        const filtroDia = document.getElementById('buscadorDia').value.toLowerCase();
+        const filas = document.querySelectorAll('#tablaUsuarios tbody tr');
+        let totalVisibles = 0;
 
         filas.forEach((fila) => {
-            const textoFila = fila.textContent.toLowerCase();
-            fila.style.display = textoFila.includes(filtro) ? '' : 'none';
+            const textoAnio = fila.children[0].textContent.toLowerCase();
+            const textoMes = fila.children[1].textContent.toLowerCase();
+            const textoDia = fila.children[2].textContent.toLowerCase();
+
+            const coincideAnio = !filtroAnio || textoAnio.includes(filtroAnio);
+            const coincideMes = !filtroMes || textoMes.includes(filtroMes);
+            const coincideDia = !filtroDia || textoDia.includes(filtroDia);
+
+            if (coincideAnio && coincideMes && coincideDia) {
+                fila.style.display = '';
+                totalVisibles++;
+            } else {
+                fila.style.display = 'none';
+            }
         });
-    });
-</script>  --}}
 
-<script>
-    document.getElementById('buscador').addEventListener('input', function () {
-    const filtro = this.value.toLowerCase();
-    const filas = document.querySelectorAll('#tablaUsuarios tbody tr');
-    let totalVisibles = 0;
+        // Actualizar el contador de registros
+        document.getElementById('totalRegistros').textContent = `Total de registros: ${totalVisibles}`;
+    }
 
-    filas.forEach((fila) => {
-        const textoFila = fila.textContent.toLowerCase();
-        if (textoFila.includes(filtro)) {
-            fila.style.display = '';
-            totalVisibles++; // Incrementar si la fila está visible
-        } else {
-            fila.style.display = 'none';
-        }
-    });
-
-    // Actualizar el contador de registros
-    document.getElementById('totalRegistros').textContent = `Total de registros: ${totalVisibles}`;
-});
+    // Añadir event listeners a los inputs
+    document.getElementById('buscadorAnio').addEventListener('input', filtrarTabla);
+    document.getElementById('buscadorMes').addEventListener('input', filtrarTabla);
+    document.getElementById('buscadorDia').addEventListener('input', filtrarTabla);
 </script>
+
+
+
 
 
 
