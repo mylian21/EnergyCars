@@ -101,7 +101,6 @@ router.get('/editar/:ID_VEHICULO', isLoggedIn, async (req,res) => {
     res.render('autos/editar', {editarAutos: editarAutos[0]});
 });
 
-
 router.post('/editar/:ID_VEHICULO', isLoggedIn, async (req,res) => {
     const { ID_VEHICULO } = req.params;
     const { veh_marca, veh_modelo, veh_anio, veh_patente } = req.body;
