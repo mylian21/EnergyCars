@@ -198,8 +198,9 @@ router.get('/gestiontransacciones', async(req, res)=>{
 });
 
 //Ruta ver usuarios
-router.get('/verusuarios', async (req, res) => {
-    const { anio, mes, dia } = req.query;
+router.get('/verusuarios', isLoggedIn, async (req, res) => {
+    const { nombre, apellido, correo } = req.query;
+    
     let query = `
         SELECT 
             YEAR(USER_FECHA_REGISTRO) AS anio,
@@ -212,28 +213,36 @@ router.get('/verusuarios', async (req, res) => {
         WHERE 1=1
     `;
 
-    if (anio) query += ` AND YEAR(USER_FECHA_REGISTRO) = ${anio}`;
-    if (mes) query += ` AND MONTH(USER_FECHA_REGISTRO) = ${mes}`;
-    if (dia) query += ` AND DAY(USER_FECHA_REGISTRO) = ${dia}`;
+    const params = [];
 
-    const usuarios = await pool.query(query);
+    if (nombre) {
+        query += ` AND USER_NOMBRE LIKE ?`;
+        params.push(`%${nombre}%`);
+    }
+    if (apellido) {
+        query += ` AND USER_APELLIDO LIKE ?`;
+        params.push(`%${apellido}%`);
+    }
+    if (correo) {
+        query += ` AND USER_CORREO LIKE ?`;
+        params.push(`%${correo}%`);
+    }
 
-    // Obtener la cantidad de registros filtrados
+    const usuarios = await pool.query(query, params);
+
     const totalRegistros = usuarios.length;
 
-    // Obtener valores únicos para los filtros
-    const anios = await pool.query('SELECT DISTINCT YEAR(USER_FECHA_REGISTRO) AS anio FROM usuario');
-    const meses = await pool.query('SELECT DISTINCT MONTH(USER_FECHA_REGISTRO) AS mes FROM usuario');
-    const dias = await pool.query('SELECT DISTINCT DAY(USER_FECHA_REGISTRO) AS dia FROM usuario');
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        return res.json({ usuarios, totalRegistros });
+    }
 
     res.render('admin/verusuarios', {
         usuarios,
-        totalRegistros,
-        anios: anios.map(a => a.anio),
-        meses: meses.map(m => m.mes),
-        dias: dias.map(d => d.dia)
+        totalRegistros
     });
 });
+
+
 
 
 
