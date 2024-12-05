@@ -37,12 +37,14 @@ async function hacerReserva(RESERVA_FECHA, RESERVA_HORA_INI, RESERVA_HORA_FIN, R
 
 async function elegirSurtidor(ID_ESTC) { 
     const surtidoresDisponibles = await pool.query('SELECT ID_SURTIDOR FROM surtidores WHERE ID_ESTC = ? AND SURT_ESTADO = 1', [ID_ESTC]);
+    console.log(surtidoresDisponibles);
     if (surtidoresDisponibles.length === 0) { 
         throw new Error('No hay surtidores disponibles.'); 
     } 
     const surtidorAleatorio = surtidoresDisponibles[Math.floor(Math.random() * surtidoresDisponibles.length)];
     return surtidorAleatorio.ID_SURTIDOR; 
 }
+
 
 // Función para cancelar una reserva
 async function cancelarReserva(ID_EST_RES, ID_RESERVA) {

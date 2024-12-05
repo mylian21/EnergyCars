@@ -35,6 +35,10 @@ hbs.registerHelper('mayor', function(a,b){
     return a > b;
 });
 
+hbs.registerHelper('ifCond', function(v1, v2, options){
+    return (v1 === v2 ? options.fn(this) : options.inverse(this))
+});
+
 //Middlewares
 app.use(session({
     secret: 'EnergyCarssqlnodesession',

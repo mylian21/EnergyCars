@@ -139,6 +139,7 @@ router.get('/reserva', isLoggedIn, async (req,res) => {
 });
 
 router.post('/reserva', isLoggedIn, async (req,res) => {
+    console.log(req.body);
     const {ID_USER} = req.user;
     const {reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe, ID_ESTC} = req.body;
     const estadoReserva = await pool.query('SELECT ID_EST_RES FROM estado_reservas WHERE ID_EST_RES = 1');
@@ -163,8 +164,31 @@ router.get('/reserva/estacion/:ID_ESTC', isLoggedIn, async (req, res) => {
     const estacionCargaID_ESTC = await pool.query('SELECT * FROM estaciones_carga WHERE ID_ESTC = ?', [ID_ESTC]);
     const surtidor = await pool.query('SELECT * FROM surtidores');
     const tiempo_carga = await pool.query('SELECT * FROM tiempo_carga')
-    res.render('auth/reserva',{estacionCargaID_ESTC, surtidor, tiempo_carga});
+    res.render('auth/reservaMapa',{estacionCargaID_ESTC: estacionCargaID_ESTC[0], surtidor, tiempo_carga});
+    console.log({estacionCargaID_ESTC})
 })
+
+router.post('/reserva/estacion/:ID_ESTC', isLoggedIn, async (req,res) => {
+    console.log(req.body);
+    const {ID_USER} = req.user;
+    const {ID_ESTC} = req.params;
+    const {reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe} = req.body;
+    const estadoReserva = await pool.query('SELECT ID_EST_RES FROM estado_reservas WHERE ID_EST_RES = 1');
+    const elegirSurt = await elegirSurtidor(ID_ESTC);
+    try {
+        //Verificar si hay reserva disponible
+        const reservaDisponible = await verificarReserva(estadoReserva, elegirSurt, reserva_fecha, reserva_hora_ini, reserva_hora_fin)
+        if (reservaDisponible) {
+            return res.status(409).json({ message: "Este horario ya esta reservado."})
+        }
+
+        //Si esta la reserva disponible la creamos.
+        await hacerReserva(reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe, ID_USER, estadoReserva[0].ID_EST_RES, elegirSurt);
+        res.redirect('/auth/listarReserva');
+    } catch(error) {
+
+    }
+});
 
 router.get('/perfil', isLoggedIn, (req,res) => {
     res.render('auth/perfil');
@@ -179,7 +203,6 @@ router.get('/editarUser/:ID_USER', isLoggedIn, async (req,res) => {
 
 router.post('/editarUser/:ID_USER', isLoggedIn, async (req,res) => {
     const { ID_USER } = req.params;
-    
     const { user_nombre, user_apellido, user_telefono, user_contrasenia } = req.body;
     const editarUser = {
         user_nombre,

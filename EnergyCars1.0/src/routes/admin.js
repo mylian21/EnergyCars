@@ -246,7 +246,7 @@ router.get('/verusuarios', isLoggedIn, async (req, res) => {
 //Ver Reservas
 router.get('/verReservas', async (req, res) => {
     const reservasPorDia = await pool.query(`
-        SELECT DATE(RESERVA_FECHA) AS dia, COUNT(*) AS cantidad_reservas
+        SELECT RESERVA_FECHA AS dia, COUNT(*) AS cantidad_reservas
         FROM reservas
         GROUP BY dia
         ORDER BY dia
