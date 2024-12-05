@@ -210,7 +210,7 @@ router.get('/verusuarios', isLoggedIn, async (req, res) => {
             USER_APELLIDO,
             USER_CORREO
         FROM usuario
-        WHERE 1=1
+        WHERE USER_CORREO <> 'admin@gmail.com'
     `;
 
     const params = [];
@@ -242,7 +242,35 @@ router.get('/verusuarios', isLoggedIn, async (req, res) => {
     });
 });
 
+//Ver Reservas
+router.get('/verReservas', async (req, res) => {
+    const reservasPorDia = await pool.query(`
+        SELECT DATE(RESERVA_FECHA) AS dia, COUNT(*) AS cantidad_reservas
+        FROM reservas
+        GROUP BY dia
+        ORDER BY dia
+    `);
 
+    const reservasPorMes = await pool.query(`
+        SELECT DATE_FORMAT(RESERVA_FECHA, '%Y-%m') AS mes, COUNT(*) AS cantidad_reservas
+        FROM reservas
+        GROUP BY mes
+        ORDER BY mes
+    `);
+
+    const reservasPorAno = await pool.query(`
+        SELECT YEAR(RESERVA_FECHA) AS anio, COUNT(*) AS cantidad_reservas
+        FROM reservas
+        GROUP BY anio
+        ORDER BY anio
+    `);
+
+    res.render('admin/verReservas', {
+        reservasPorDia,
+        reservasPorMes,
+        reservasPorAno
+    });
+});
 
 
 

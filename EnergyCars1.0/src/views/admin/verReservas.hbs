@@ -1,0 +1,184 @@
+{{!-- <h1>Indicadores de Reservas</h1>
+
+<h2>Reservas por Día</h2>
+<table>
+    <tr>
+        <th>Día</th>
+        <th>Cantidad de Reservas</th>
+    </tr>
+    {{#each reservasPorDia}}
+    <tr>
+        <td>{{this.dia}}</td>
+        <td>{{this.cantidad_reservas}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<h2>Reservas por Mes</h2>
+<table>
+    <tr>
+        <th>Mes</th>
+        <th>Cantidad de Reservas</th>
+    </tr>
+    {{#each reservasPorMes}}
+    <tr>
+        <td>{{this.mes}}</td>
+        <td>{{this.cantidad_reservas}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<h2>Reservas por Año</h2>
+<table>
+    <tr>
+        <th>Año</th>
+        <th>Cantidad de Reservas</th>
+    </tr>
+    {{#each reservasPorAno}}
+    <tr>
+        <td>{{this.anio}}</td>
+        <td>{{this.cantidad_reservas}}</td>
+    </tr>
+    {{/each}}
+</table> --}}
+
+<h1>Indicadores de Reservas</h1>
+
+<div class="card-container">
+    <!-- Reservas por Día -->
+    <div class="card">
+        <h2>Reservas por día</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Día</th>
+                    <th>Cantidad de Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each reservasPorDia}}
+                <tr>
+                    <td>{{this.dia}}</td>
+                    <td>{{this.cantidad_reservas}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Reservas por Mes -->
+    <div class="card">
+        <h2>Reservas por mes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mes</th>
+                    <th>Cantidad de Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each reservasPorMes}}
+                <tr>
+                    <td>{{this.mes}}</td>
+                    <td>{{this.cantidad_reservas}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Reservas por Año -->
+    <div class="card">
+        <h2>Reservas por año</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Año</th>
+                    <th>Cantidad de Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each reservasPorAno}}
+                <tr>
+                    <td>{{this.anio}}</td>
+                    <td>{{this.cantidad_reservas}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Estilos embebidos -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2em;
+        color: #333;
+    }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+        font-size: 1.5em;
+        color: #009879;
+        margin-bottom: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    table th,
+    table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid #dddddd;
+        text-align: center;
+    }
+
+    table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+</style>
+
