@@ -242,62 +242,38 @@ router.get('/verusuarios', isLoggedIn, async (req, res) => {
     });
 });
 
-// //Ver Reservas
-// router.get('/verEstaciones', async (req, res) => {
-//     const { fecha,  estacion, filter } = req.query;
 
-//     let filtroEstacion = estacion ? `WHERE EC.ESTC_NOMBRE LIKE ${pool.escape(`%${estacion}%`)}` : '';
-//     let indicadores = {};
+//Ver Reservas
+router.get('/verReservas', async (req, res) => {
+    const reservasPorDia = await pool.query(`
+        SELECT DATE(RESERVA_FECHA) AS dia, COUNT(*) AS cantidad_reservas
+        FROM reservas
+        GROUP BY dia
+        ORDER BY dia
+    `);
 
-//     if (!filter || filter === 'dia') {
-//         indicadores.reservasPorDia = await pool.query(`
-//             SELECT 
-//                 EC.ESTC_NOMBRE AS estacion,
-//                 R.RESERVA_FECHA AS dia,
-//                 COUNT(*) AS total_reservas
-//             FROM reservas R
-//             JOIN surtidores S ON R.ID_SURTIDOR = S.ID_SURTIDOR
-//             JOIN estaciones_carga EC ON S.ID_ESTC = EC.ID_ESTC
-//             ${filtroEstacion}
-//             GROUP BY EC.ESTC_NOMBRE, R.RESERVA_FECHA
-//             ORDER BY EC.ESTC_NOMBRE, R.RESERVA_FECHA;
-//         `);
-//     }
+    const reservasPorMes = await pool.query(`
+        SELECT DATE_FORMAT(RESERVA_FECHA, '%Y-%m') AS mes, COUNT(*) AS cantidad_reservas
+        FROM reservas
+        GROUP BY mes
+        ORDER BY mes
+    `);
 
-//     if (!filter || filter === 'mes') {
-//         indicadores.reservasPorMes = await pool.query(`
-//             SELECT 
-//                 EC.ESTC_NOMBRE AS estacion,
-//                 DATE_FORMAT(R.RESERVA_FECHA, '%Y-%m') AS mes,
-//                 COUNT(*) AS total_reservas
-//             FROM reservas R
-//             JOIN surtidores S ON R.ID_SURTIDOR = S.ID_SURTIDOR
-//             JOIN estaciones_carga EC ON S.ID_ESTC = EC.ID_ESTC
-//             ${filtroEstacion}
-//             GROUP BY EC.ESTC_NOMBRE, mes
-//             ORDER BY EC.ESTC_NOMBRE, mes;
-//         `);
-//     }
+    const reservasPorAno = await pool.query(`
+        SELECT YEAR(RESERVA_FECHA) AS anio, COUNT(*) AS cantidad_reservas
+        FROM reservas
+        GROUP BY anio
+        ORDER BY anio
+    `);
 
-//     if (!filter || filter === 'anio') {
-//         indicadores.reservasPorAno = await pool.query(`
-//             SELECT 
-//                 EC.ESTC_NOMBRE AS estacion,
-//                 YEAR(R.RESERVA_FECHA) AS anio,
-//                 COUNT(*) AS total_reservas
-//             FROM reservas R
-//             JOIN surtidores S ON R.ID_SURTIDOR = S.ID_SURTIDOR
-//             JOIN estaciones_carga EC ON S.ID_ESTC = EC.ID_ESTC
-//             ${filtroEstacion}
-//             GROUP BY EC.ESTC_NOMBRE, anio
-//             ORDER BY EC.ESTC_NOMBRE, anio;
-//         `);
-//     }
+    res.render('admin/verReservas', {
+        reservasPorDia,
+        reservasPorMes,
+        reservasPorAno
+    });
+});
 
-//     res.render('admin/verEstaciones', { indicadores, estacion });
-// });
-
-// Ver Reservas
+// Ver Estaciones
 router.get('/verEstaciones', async (req, res) => {
     const { estacion } = req.query;
 
