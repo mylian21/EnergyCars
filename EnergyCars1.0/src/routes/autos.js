@@ -40,10 +40,15 @@ router.post('/agregar', isLoggedIn, async (req, res) => {
 router.get('/modelos/:marcaId', isLoggedIn, async (req, res) => {
     const { marcaId } = req.params;
     const modelos = await pool.query(`
-        SELECT modelos.ID_MODELO, modelos.MOD_NOMBRE 
-        FROM marca_modelo 
-        JOIN modelos ON marca_modelo.ID_MODELO = modelos.ID_MODELO 
-        WHERE marca_modelo.ID_MARCA = ?
+        SELECT 
+            modelos.ID_MODELO, 
+            modelos.MOD_NOMBRE 
+        FROM 
+            marca_modelo 
+        JOIN 
+            modelos ON marca_modelo.ID_MODELO = modelos.ID_MODELO 
+        WHERE 
+            marca_modelo.ID_MARCA = ?
     `, [marcaId]);
     res.json(modelos);
 });
@@ -98,7 +103,9 @@ router.get('/editar/:ID_VEHICULO', isLoggedIn, async (req,res) => {
             anio ON vehiculos.ID_ANIO = anio.ID_ANIO
         WHERE 
             vehiculos.ID_VEHICULO = ?`, [ID_VEHICULO]);
-    res.render('autos/editar', {editarAutos: editarAutos[0]});
+        const marcas = await pool.query(`SELECT ID_MARCA, MARC_NOMBRE FROM marcas`);
+        const anios = await pool.query(`SELECT ID_ANIO, ANIO FROM anio`);
+    res.render('autos/editar' ,{editarAutos: editarAutos[0], marcas, anios});
 });
 
 router.post('/editar/:ID_VEHICULO', isLoggedIn, async (req,res) => {
