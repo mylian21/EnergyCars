@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     .addTo(map)
                     .bindPopup(`
                         <div class = "container">
-                            <h5>${estacion.ESTC_NOMBRE}</h5>
+                            <h3>${estacion.ESTC_NOMBRE}</h3>
+                            <h4>${estacion.ESTC_DIRECCION}</h4>
+                            <h5>${estacion.ESTC_LOCALIDAD}</h5>
                             <p>Cantidad de surtidores: ${estacion.cantidad_surtidores}</p>
                             <form action="/reserva/estacion/${estacion.ID_ESTC}"> <button class="btn btn-success">RESERVAR</button> </form>
                         </div>
