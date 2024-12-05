@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas por Estación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .reservas-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .reservas-tabla th, .reservas-tabla td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        .reservas-tabla th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .reservas-tabla tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reservas por Estación</h1>
+
+    <!-- Buscador -->
+    <form method="GET" action="/admin/verEstaciones">
+        <input type="text" name="estacion" placeholder="Buscar por nombre de estación" value="{{estacion}}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Tabla de Reservas -->
+    <section>
+        <h2>Reservas por Día</h2>
+        <table class="reservas-tabla">
+            <thead>
+                <tr>
+                    <th>Estación</th>
+                    <th>Día</th>
+                    <th>Total Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each indicadores.reservasPorDia}}
+                <tr>
+                    <td>{{this.estacion}}</td>
+                    <td>{{this.dia}}</td>
+                    <td>{{this.total_reservas}}</td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="3">No hay datos disponibles</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Reservas por Mes</h2>
+        <table class="reservas-tabla">
+            <thead>
+                <tr>
+                    <th>Estación</th>
+                    <th>Mes</th>
+                    <th>Total Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each indicadores.reservasPorMes}}
+                <tr>
+                    <td>{{this.estacion}}</td>
+                    <td>{{this.mes}}</td>
+                    <td>{{this.total_reservas}}</td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="3">No hay datos disponibles</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Reservas por Año</h2>
+        <table class="reservas-tabla">
+            <thead>
+                <tr>
+                    <th>Estación</th>
+                    <th>Año</th>
+                    <th>Total Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each indicadores.reservasPorAno}}
+                <tr>
+                    <td>{{this.estacion}}</td>
+                    <td>{{this.anio}}</td>
+                    <td>{{this.total_reservas}}</td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="3">No hay datos disponibles</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
+
+
+
+
