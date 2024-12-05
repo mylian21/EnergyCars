@@ -132,6 +132,13 @@ router.get('/eliminar/:ID_RESERVA', isLoggedIn, async (req, res) => {
     res.redirect('/auth/listarReserva');
 });
 
+router.get('/cancelar/:ID_RESERVA', isLoggedIn, async (req, res) => {
+    const { ID_RESERVA } = req.params;
+    await pool.query('UPDATE reservas SET ID_EST_RES= 3 WHERE ID_RESERVA = ?', [ID_RESERVA]);
+    req.flash('auto_success', 'RESERVA CANCELADA')
+    res.redirect('/auth/listarReserva');
+});
+
 
 router.get('/reserva', isLoggedIn, async (req, res) => {
     const estacionCarga = await pool.query('SELECT * FROM estaciones_carga');
