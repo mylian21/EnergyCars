@@ -1,99 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas por estación</title>
-    <style>
-        body {
-            line-height: 1.6;
-        }
+<h1 class="colorGreen">Reservas por Estación</h1>
 
-        h1, h2{
-            color: #008037
-        }
+<!-- Buscador -->
+<form method="GET" action="/admin/verEstaciones" class="my-3">
+    <input type="text" class="form-control d-inline" style="width: 300px;" name="estacion"
+        placeholder="Buscar por nombre de estación" value="{{estacion}}">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
 
-        th{
-            color:#004aad
-        }
-
-        form {
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            margin-right: 10px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .reservas-tabla {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1em;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        .reservas-tabla th, .reservas-tabla td {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        .reservas-tabla th {
-            background-image: linear-gradient(#aaccf7,#fafcff, #98f6a0);
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .reservas-tabla tbody {
-            background-color: #fafcff;
-        }
-    </style>
-</head>
-<body>
-    <h1>Reservas por Estación</h1>
-
-    <!-- Buscador -->
-    <form method="GET" action="/admin/verEstaciones">
-        <input type="text" name="estacion" placeholder="Buscar por nombre de estación" value="{{estacion}}">
-        <button type="submit">Buscar</button>
-    </form>
-
-    <!-- Tabla de Reservas -->
-    <section>
-        <h2>Reservas por día</h2>
-        <table class="reservas-tabla">
+<!-- Tabla de Reservas -->
+<div class="">
+    <div class="card-body">
+        <h2 class="card-title my-3 colorGreen">Reservas por día</h2>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Estación</th>
-                    <th>Día</th>
-                    <th>Total de reservas</th>
+                    <th scope="col" class="fondoGradiente">Estación</th>
+                    <th scope="col" class="fondoGradiente">Día</th>
+                    <th scope="col" class="fondoGradiente">Total de reservas</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each indicadores.reservasPorDia}}
                 <tr>
-                    <td>{{this.estacion}}</td>
-                    <td>{{this.dia}}</td>
-                    <td>{{this.total_reservas}}</td>
+                    <td>{{estacion}}</td>
+                    <td>{{dia}}</td>
+                    <td>{{total_reservas}}</td>
                 </tr>
                 {{else}}
                 <tr>
@@ -102,24 +33,26 @@
                 {{/each}}
             </tbody>
         </table>
-    </section>
+    </div>
+</div>
 
-    <section>
-        <h2>Reservas por mes</h2>
-        <table class="reservas-tabla">
+<div class="">
+    <div class="card-body">
+        <h2 class="card-title my-3 colorGreen">Reservas por mes</h2>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Estación</th>
-                    <th>Mes</th>
-                    <th>Total de reservas</th>
+                    <th scope="col" class="fondoGradiente">Estación</th>
+                    <th scope="col" class="fondoGradiente">Mes</th>
+                    <th scope="col" class="fondoGradiente">Total de reservas</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each indicadores.reservasPorMes}}
                 <tr>
-                    <td>{{this.estacion}}</td>
-                    <td>{{this.mes}}</td>
-                    <td>{{this.total_reservas}}</td>
+                    <td>{{estacion}}</td>
+                    <td>{{mes}}</td>
+                    <td>{{total_reservas}}</td>
                 </tr>
                 {{else}}
                 <tr>
@@ -128,24 +61,26 @@
                 {{/each}}
             </tbody>
         </table>
-    </section>
+    </div>
+</div>
 
-    <section>
-        <h2>Reservas por año</h2>
-        <table class="reservas-tabla">
+<div class="">
+    <div class="card-body">
+        <h2 class="card-title my-3 colorGreen">Reservas por año</h2>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Estación</th>
-                    <th>Año</th>
-                    <th>Total de reservas</th>
+                    <th scope="col" class="fondoGradiente">Estación</th>
+                    <th scope="col" class="fondoGradiente">Año</th>
+                    <th scope="col" class="fondoGradiente">Total de reservas</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each indicadores.reservasPorAno}}
                 <tr>
-                    <td>{{this.estacion}}</td>
-                    <td>{{this.anio}}</td>
-                    <td>{{this.total_reservas}}</td>
+                    <td>{{estacion}}</td>
+                    <td>{{anio}}</td>
+                    <td>{{total_reservas}}</td>
                 </tr>
                 {{else}}
                 <tr>
@@ -154,10 +89,5 @@
                 {{/each}}
             </tbody>
         </table>
-    </section>
-</body>
-</html>
-
-
-
-
+    </div>
+</div>

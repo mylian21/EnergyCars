@@ -18,3 +18,8 @@ body {
 .colorBlue {    
     color:#004aad;
 }
+
+.fondoGradiente {
+    background-image: linear-gradient(#fafcff, #aaccf7, #98f6a0);
+    color:#004aad !important;
+}
