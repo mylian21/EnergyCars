@@ -1,9 +1,11 @@
-<div class="container p-4">
+<div class="card p-4">
+    <div class="card border mb-3">
+        <h3 class="text-center">Relacion Marcas, Modelos y Tipo de Conector</h3>
+    </div>
     <div class="row">
         <div class="col-sm-4 mb-3 mb-sm-0">
             <div class="card">
                 <div class="card-body">
-                    <h3>Relacion Marcas, Modelos y Tipo de Conector</h3>
                     <!-- Formulario para asociar una marca con un modelo y tipo de conector -->
                     <form action="/admin/vermarcas" method="POST">
                         <!-- Desplegable de Marcas -->
@@ -12,7 +14,7 @@
                             <select id="id_marca" class="form-control" name="id_marca" required>
                                 <option value="" disabled selected>Selecciona una marca</option>
                                 {{#each marcas}}
-                                    <option value="{{ID_MARCA}}">{{MARC_NOMBRE}}</option>
+                                <option value="{{ID_MARCA}}">{{MARC_NOMBRE}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -22,7 +24,7 @@
                             <select id="id_modelo" class="form-control" name="id_modelo" required>
                                 <option value="" disabled selected>Selecciona un modelo</option>
                                 {{#each modelos}}
-                                    <option value="{{ID_MODELO}}">{{MOD_NOMBRE}}</option>
+                                <option value="{{ID_MODELO}}">{{MOD_NOMBRE}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -32,16 +34,15 @@
                             <select id="id_tc" class="form-control" name="id_tc" required>
                                 <option value="" disabled selected>Selecciona un tipo de conector</option>
                                 {{#each tipos_conectores}}
-                                    <option value="{{ID_TC}}">{{TC_NOMBRE}}</option>
+                                <option value="{{ID_TC}}">{{TC_NOMBRE}}</option>
                                 {{/each}}
                             </select>
                         </div>
 
                         <div class="form-group d-grid my-3">
-                            <button class="btn btn-success">Guardar Relación</button>
-                            <a href="/admin/gestionautos" class="btn btn-danger my-2">Cancelar</a>
+                            <button class="btn btn-success">GUARDAR</button>
                         </div>
-                    </form>  
+                    </form>
                 </div>
             </div>
         </div>
@@ -51,29 +52,83 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Marca</th>
                                 <th scope="col">Modelo</th>
                                 <th scope="col">Tipo conector</th>
-                                <th scope="col">Acción</th>                                
+                                <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             {{#each marca_modelo}}
-                                <tr>
-                                    <th scope="row"> {{ID_MARCA_MODELO}} </th>
-                                    <td> {{MARC_NOMBRE}} </td>
-                                    <td> {{MOD_NOMBRE}} </td>
-                                    <td> {{TC_NOMBRE}} </td>
-                                    <td>
-                                        <a href="/admin/eliminar/{{this.ID_MARCA_MODELO}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta relacion?')">Eliminar</a>
-                                        <a href="/admin/editar/{{this.ID_MARCA_MODELO}}" class="btn btn-success btn-sm">Editar</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td> {{MARC_NOMBRE}} </td>
+                                <td> {{MOD_NOMBRE}} </td>
+                                <td> {{TC_NOMBRE}} </td>
+                                <td>
+                                    <form action="/admin/vermarcas/eliminar" method="post" onclick="return confirm('¿Estás seguro de eliminar esta relacion?')">
+                                        <input type="hidden" name="id_marca_modelo" value="{{ID_MARCA_MODELO}}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                    {{!-- <a href="/admin/eliminar/{{this.ID_MARCA_MODELO}}" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('¿Estás seguro de eliminar esta relacion?')">Eliminar</a> --}}
+                                </td>
+                            </tr>
                             {{/each}}
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</div>                  
+</div>
+<div class="card p-4">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Formulario para agregar una nueva marca -->
+                    <form action="/admin/vermarcas/marca" method="POST">
+                        <label for="marc_nombre" class="form-label">Marcas:</label>
+                        <input type="text" class="form-control" name="marc_nombre" placeholder="Nombre de la marca" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Formulario para agregar un nuevo modelo -->
+                    <form action="/admin/vermarcas/modelo" method="POST">
+                        <label for="mod_nombre" class="form-label">Modelos:</label>
+                        <input type="text" class="form-control" name="mod_nombre" placeholder="Nombre del modelo" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Formulario para agregar un nuevo tipo de conector -->
+                    <form action="/admin/vermarcas/conector" method="POST">
+                        <label for="tc_nombre" class="form-label"> Tipo de conector:</label>
+                        <input type="text" class="form-control" name="tc_nombre" placeholder="Tipo de conector" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Formulario para agregar una nuevo año -->
+                    <form action="/admin/vermarcas/anio" method="POST">
+                        <label for="n_anio" class="form-label">Año:</label>
+                        <input type="number" class="form-control" name="n_anio" placeholder="Año" min="2005" max="2025" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

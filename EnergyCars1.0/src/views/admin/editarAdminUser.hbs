@@ -3,15 +3,15 @@
         <div class="">
             <div class="card-body">
                 <h3 class="card-title text-center">Editar cuenta</h3>
-                <form action="/auth/editarUser/{{editarAdminUser.ID_USER}}" method="post">
+                <form action="/admin/editarAdminUser/{{editarAdminUser.ID_USER}}" method="post">
                     <div class="form-group my-3">
                         <label for="user_nombre" class="form-label">Nombre:</label>
-                        <input type="nombre" value="{{editarAdminUser.USER_NOMBRE}}" id="user_nombre" name="user_nombre" placeholder="Ingrese su nombre"
+                        <input type="text" value="{{editarAdminUser.USER_NOMBRE}}" id="user_nombre" name="user_nombre" placeholder="Ingrese su nombre"
                             class="form-control" disabled>
                     </div>
                     <div class="form-group my-3">
                         <label for="user_apellido" class="form-label">Apellido:</label>
-                        <input type="apellido" value="{{editarAdminUser.USER_APELLIDO}}" id="user_apellido" name="user_apellido" placeholder="Ingrese su apellido"
+                        <input type="text" value="{{editarAdminUser.USER_APELLIDO}}" id="user_apellido" name="user_apellido" placeholder="Ingrese su apellido"
                             class="form-control" disabled>
                     </div>
                     <div class="form-group my-3">
