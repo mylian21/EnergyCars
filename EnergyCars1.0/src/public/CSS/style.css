@@ -1,5 +1,6 @@
 body {
     background-image: linear-gradient(#fafcff, #aaccf7, #98f6a0);
+    background-attachment: fixed;
 }
 
 .barUser {
