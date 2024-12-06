@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas por Estación</title>
+    <title>Reservas por estación</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
             line-height: 1.6;
         }
 
-        h1, h2 {
-            color: #333;
+        h1, h2{
+            color: #008037
+        }
+
+        th{
+            color:#004aad
         }
 
         form {
@@ -23,7 +25,7 @@
             padding: 10px;
             width: 300px;
             margin-right: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #dddddd;
             border-radius: 5px;
         }
 
@@ -52,15 +54,17 @@
         .reservas-tabla th, .reservas-tabla td {
             padding: 12px 15px;
             border: 1px solid #ddd;
+            text-align: center;
         }
 
         .reservas-tabla th {
-            background-color: #f4f4f4;
+            background-image: linear-gradient(#aaccf7,#fafcff, #98f6a0);
             font-weight: bold;
+            text-align: center;
         }
 
-        .reservas-tabla tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .reservas-tabla tbody {
+            background-color: #fafcff;
         }
     </style>
 </head>
@@ -75,13 +79,13 @@
 
     <!-- Tabla de Reservas -->
     <section>
-        <h2>Reservas por Día</h2>
+        <h2>Reservas por día</h2>
         <table class="reservas-tabla">
             <thead>
                 <tr>
                     <th>Estación</th>
                     <th>Día</th>
-                    <th>Total Reservas</th>
+                    <th>Total de reservas</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,13 +105,13 @@
     </section>
 
     <section>
-        <h2>Reservas por Mes</h2>
+        <h2>Reservas por mes</h2>
         <table class="reservas-tabla">
             <thead>
                 <tr>
                     <th>Estación</th>
                     <th>Mes</th>
-                    <th>Total Reservas</th>
+                    <th>Total de reservas</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,13 +131,13 @@
     </section>
 
     <section>
-        <h2>Reservas por Año</h2>
+        <h2>Reservas por año</h2>
         <table class="reservas-tabla">
             <thead>
                 <tr>
                     <th>Estación</th>
                     <th>Año</th>
-                    <th>Total Reservas</th>
+                    <th>Total de reservas</th>
                 </tr>
             </thead>
             <tbody>

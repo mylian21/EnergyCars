@@ -1,12 +1,12 @@
 <div class="container p-8">
     <div class="row p-5">
         <div class="col-md-6 mx-auto">
-            <div class="card">
+            <div class="card" style="background-image: linear-gradient(#aaccf7,#fafcff, #98f6a0)">
                 <div class="card-body">
-                    <h4 class="card-title text-center mb-4">Estaciones de Carga</h4>
+                    <h4 class="card-title text-center mb-4, colorGreen">Registra una estación de carga</h4>
                     <form action="/admin/gestionEstaciones" method="POST">
                         <div class="form-group my-3">
-                            <label for="estc_nombre" class="form-label">Nombre de la Estación:</label>
+                            <label for="estc_nombre" class="form-label">Nombre de la estación:</label>
                             <input type="text" name="estc_nombre" id="estc_nombre" class="form-control" required>
                         </div>
                         <div class="form-group my-3">
@@ -18,7 +18,7 @@
                             <input type="text" name="estc_localidad" id="estc_localidad" class="form-control" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="estc_cant_surtidores" class="form-label">Cantidad de Surtidores:</label>
+                            <label for="estc_cant_surtidores" class="form-label">Cantidad de surtidores:</label>
                             <input type="number" name="estc_cant_surtidores" id="estc_cant_surtidores" class="form-control" required>
                         </div>
                         <div class="form-group my-3">
@@ -39,7 +39,7 @@
                             <input type="text" name="estc_longitud" id="estc_longitud" class="form-control" required>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-success btn-block">Crear Estación</button>
+                            <button class="btn btn-success btn-block">Aceptar</button>
                         </div>
                     </form>
                 </div>
