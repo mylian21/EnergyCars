@@ -135,6 +135,33 @@ router.get('/gestionEstaciones', async (req, res) => {
     }
 });
 
+//Ruta listado estaciones de carga
+
+router.get('/gestionEstaciones', isLoggedIn, async (req, res) => {
+    try {
+        const estaciones_carga = await pool.query(`
+            SELECT
+                estaciones_carga.ID_ESTC,
+                estaciones_carga.ESTC_NOMBRE,
+                estaciones_carga.ESTC_DIRECCION,
+                estaciones_carga.ESTC_LOCALIDAD,
+                provincias.PROVINCIA_NOMBRE,
+                estaciones_carga.ESTC_CANT_SURTIDORES,
+                estaciones_carga.ESTC_LATITUD,
+                estaciones_carga.ESTC_LONGITUD
+            FROM
+                estaciones_carga
+            JOIN
+                provincias ON estaciones_carga.ID_PROVINCIA = provincias.ID_PROVINCIA
+        `);
+        console.log(estaciones_carga); // Depuración: Verifica los datos aquí
+        res.render('admin/gestionEstaciones', { estaciones_carga });
+    } catch (error) {
+        console.error('Error al obtener estaciones:', error);
+        res.status(500).send('Error al cargar estaciones');
+    }
+});
+
 
 
 // Ruta para crear una estación de carga
