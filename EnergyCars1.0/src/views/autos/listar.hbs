@@ -4,8 +4,8 @@
         {{#each vehiculos}}
             <div class="col-md-3">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">
+                    <div class="card-body fondoGradiente3">
+                        <h3 class="card-title text-uppercase colorGreen">
                             {{MARC_NOMBRE}}
                         </h3>
                         <h6 class="card-subtitle mb-2 text-body-secondary">
@@ -14,8 +14,8 @@
                         <p class="card-text">
                             Patente: {{VEH_PATENTE}}
                         </p>
-                        <a href="/autos/eliminar/{{ID_VEHICULO}}" class="btn btn-danger">ELIMINAR</a> {{!-- Fecha min 1:25 --}}
-                        <a href="/autos/editar/{{ID_VEHICULO}}" class="btn btn-success">EDITAR</a>
+                        <a href="/autos/eliminar/{{ID_VEHICULO}}" class="btn btn-danger">Eliminar</a> {{!-- Fecha min 1:25 --}}
+                        <a href="/autos/editar/{{ID_VEHICULO}}" class="btn btn-success">Editar</a>
                     </div>
                 </div>
             </div>

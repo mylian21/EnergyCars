@@ -1,14 +1,13 @@
-<h1>Indicadores de Reservas</h1>
-
-<div class="card-container">
+<h1 class="colorGreen table-header">Indicadores de Reservas</h1>
+<div class="">
     <!-- Reservas por Día -->
-    <div class="card">
-        <h2>Reservas por día</h2>
-        <table>
+    <div class="card-body">
+        <h3 class="card-title my-3 colorGreen">Reservas por día</h3>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Día</th>
-                    <th>Cantidad de reservas</th>
+                    <th class="fondoGradiente2">Día</th>
+                    <th class="fondoGradiente2">Cantidad de reservas</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,13 +22,13 @@
     </div>
 
     <!-- Reservas por Mes -->
-    <div class="card">
-        <h2>Reservas por mes</h2>
-        <table>
+    <div class="">
+        <h3 class="card-title my-3 colorGreen">Reservas por mes</h3>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Mes</th>
-                    <th>Cantidad de reservas</th>
+                    <th class="fondoGradiente2">Mes</th>
+                    <th class="fondoGradiente2">Cantidad de reservas</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,13 +43,13 @@
     </div>
 
     <!-- Reservas por Año -->
-    <div class="card">
-        <h2>Reservas por año</h2>
-        <table>
+    <div class="">
+        <h3 class="card-title my-3 colorGreen">Reservas por año</h3>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Año</th>
-                    <th>Cantidad de reservas</th>
+                    <th class="fondoGradiente2">Año</th>
+                    <th class="fondoGradiente2">Cantidad de reservas</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,76 +63,7 @@
         </table>
     </div>
 </div>
-
-<!-- Estilos embebidos -->
-<style>
-    body {
-        background-color: #f9f9f9;
-        color: #333;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 2em;
-        color: #008037;
-        font-weight: bolder;
-    }
-
-    .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
-
-    .card {
-        background-image: linear-gradient(#aaccf7,#fafcff, #98f6a0);
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 350px;
-        padding: 20px;
-        text-align: center;
-        border: 1px solid #e0e0e0;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .card h2 {
-        font-size: 1.5em;
-        color: #008037;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    table thead tr {
-        background-color: #8ccddf;
-        color: #004aad;
-        text-align: left;
-    }
-
-    table th,
-    table td {
-        padding: 8px 12px;
-        border-bottom: 1px solid #dddddd;
-        text-align: center;
-    }
-
-    table tbody tr:nth-of-type(even) {
-        background-color: #f3f3f3;
-    }
-
-    table tbody tr:last-of-type {
-        border-bottom: 2px solid #009879;
-    }
-</style>
+<div 
+    class="form-group text-center">
+    <a href="/admin/gestiontransacciones" class="btn btn-success btn-block">Volver</a>
+</div>

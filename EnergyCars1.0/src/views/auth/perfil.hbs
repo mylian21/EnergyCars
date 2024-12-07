@@ -1,35 +1,35 @@
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
-            <div class="card">
+            <div class="card fondoGradiente3">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Mis Datos
+                    <h3 class="card-title text-center colorGreen">Mis Datos
                         <img src="/img/usuarioperfil.png" class="card-img-top" style="width: 60px;" alt="">
                     </h3>                    
                     <!-- Contenedor para los datos -->
                     <div class="form-group my-3">
                         <div class="p-2 mb-2 border rounded bg-light">
-                            <label for="nombre" class="form-label fw-">Nombre:</label>
+                            <label for="nombre" class="form-label fw- colorBlue">Nombre:</label>
                             <h5>{{user.USER_NOMBRE}}</h5>
                         </div>
 
                         <div class="p-2 mb-2 border rounded bg-light">
-                            <label for="apellido" class="form-label fw-">Apellido:</label>
+                            <label for="apellido" class="form-label fw- colorBlue">Apellido:</label>
                             <h5>{{user.USER_APELLIDO}}</h5>
                         </div>
 
                         <div class="p-2 mb-2 border rounded bg-light">
-                            <label for="correo" class="form-label fw-">Correo:</label>
+                            <label for="correo" class="form-label fw- colorBlue">Correo:</label>
                             <h5>{{user.USER_CORREO}}</h5>
                         </div>
 
                         <div class="p-2 mb-2 border rounded bg-light">
-                            <label for="telefono" class="form-label fw-">Teléfono:</label>
+                            <label for="telefono" class="form-label fw- colorBlue">Teléfono:</label>
                             <h5>{{user.USER_TELEFONO}}</h5>
                         </div>
 
                         <div class="container text-center mt-4">
-                            <a href="/auth/editarUser/{{user.ID_USER}}" class="btn btn-success btn-block">EDITAR PERFIL</a>
+                            <a href="/auth/editarUser/{{user.ID_USER}}" class="btn btn-success btn-block">Editar perfil</a>
                         </div>
                     </div>
                 </div>

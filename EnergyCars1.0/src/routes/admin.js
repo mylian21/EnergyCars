@@ -312,4 +312,18 @@ router.get('/verEstaciones', async (req, res) => {
     res.render('admin/verEstaciones', { indicadores, estacion });
 });
 
+//Botónes Volver 
+router.get('/verusuarios', isLoggedIn, async(req, res) => {
+    res.render('admin/gestiontransacciones');
+});
+
+router.get('/verReservas', isLoggedIn, async(req, res) => {
+    res.render('admin/gestiontransacciones');
+});
+
+router.get('/verEstaciones', isLoggedIn, async(req, res) => {
+    res.render('admin/gestiontransacciones');
+});
+
+
 module.exports = router;

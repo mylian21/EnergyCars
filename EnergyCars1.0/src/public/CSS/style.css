@@ -23,3 +23,24 @@ body {
     background-image: linear-gradient(#fafcff, #aaccf7, #98f6a0);
     color:#004aad !important;
 }
+
+.fondoGradiente2 {
+    background-image: linear-gradient(#aaccf7,#fafcff, #98f6a0);
+    color:#004aad !important;
+}
+
+.fondoGradiente3 {
+    background-image: linear-gradient(#aaccf7,#fafcff, #98f6a0);
+}
+
+.fondoGradiente4 {
+    background-image: radial-gradient(#aaccf7,#fafcff, #98f6a0);
+}
+
+.letraBold{
+    font-weight: bold;
+}
+
+.table-header {
+    text-align: center; 
+}

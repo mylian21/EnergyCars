@@ -1,5 +1,4 @@
-<h2>Listado de Estaciones</h2>
-
+<h2 class="colorGreen">Listado de Estaciones</h2>
 <div style="position: relative; width: 100%; max-width: 400px;">
     <input
         type="text"
@@ -20,17 +19,17 @@
     </i>
 </div>
 <br>
-
-<table class="table">
+<div>
+<table class="table table-bordered table-header">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Localidad</th>
-            <th scope="col">Provincia</th>
-            <th scope="col">N° surtidores</th>
-            <th scope="col">Acción</th>
+            <th scope="col fondoGradiente2">#</th>
+            <th scope="col fondoGradiente2">Nombre</th>
+            <th scope="col fondoGradiente2">Dirección</th>
+            <th scope="col fondoGradiente2">Localidad</th>
+            <th scope="col fondoGradiente2">Provincia</th>
+            <th scope="col fondoGradiente2">N° surtidores</th>
+            <th scope="col fondoGradiente2">Acción</th>
         </tr>
     </thead>
     <tbody id="tabla-estacionesCarga">
@@ -45,7 +44,7 @@
                     <td>{{ESTC_CANT_SURTIDORES}}</td>
                     <td>
                         <form action="/reserva/estacion/{{ID_ESTC}}">
-                            <button class="btn btn-success">RESERVAR</button>
+                            <button class="btn btn-success">Reservar</button>
                         </form>
                     </td>
                 </tr>
@@ -57,6 +56,7 @@
         {{/if}}
     </tbody>
 </table>
+</div>
 
 <script>
     document.getElementById('buscador').addEventListener('input', function () {

@@ -2,29 +2,29 @@
     <div class="col-md-4 mx-auto">
         <div class="">
             <div class="card-body">
-                <h3 class="card-title text-center">Editar cuenta</h3>
+                <h3 class="card-title text-center colorGreen">Editar cuenta</h3>
                 <form action="/auth/editarUser/{{editarUser.ID_USER}}" method="post">
                     <div class="form-group my-3">
-                        <label for="nombre" class="form-label">Nombre:</label>
+                        <label for="nombre" class="form-label colorBlue">Nombre:</label>
                         <input type="text" value="{{editarUser.USER_NOMBRE}}" id="user_nombre" name="user_nombre"
                             class="form-control">
                     </div>
                     <div class="form-group my-3">
-                        <label for="apellido" class="form-label">Apellido:</label>
+                        <label for="apellido" class="form-label colorBlue">Apellido:</label>
                         <input type="text" value="{{editarUser.USER_APELLIDO}}" id="user_apellido" name="user_apellido"
                             class="form-control">
                     </div>
                     <div class="form-group my-3">
-                        <label for="correo" class="form-label">Correo:</label>
+                        <label for="correo" class="form-label colorBlue">Correo:</label>
                         <input type="email" value="{{editarUser.USER_CORREO}}" id="user_correo" name="user_correo" placeholder="Ingrese su correo"
                             class="form-control" disabled>
                     </div>
                     <div class="form-group my-3">
-                        <label for="telefono" class="form-label">Telefono:</label>
+                        <label for="telefono" class="form-label colorBlue">Telefono:</label>
                         <input type="tel" value="{{editarUser.USER_TELEFONO}}" id="user_telefono" name="user_telefono" placeholder="11xxxxxxxx" class="form-control">
                     </div>
                     <div class="form-group my-3">
-                        <label for="password" class="form-label">Contraseña:</label>
+                        <label for="password" class="form-label colorBlue">Contraseña:</label>
                         <input type="password" value="{{editarUser.USER_CONTRASEINA}}" id="user_contrasenia" name="user_contrasenia" placeholder="Contraseña"
                             class="form-control">
                     </div>

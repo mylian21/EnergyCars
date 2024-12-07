@@ -1,16 +1,67 @@
-<div class="card p-4">
-    <div class="card border mb-3">
-        <h3 class="text-center">Relacion Marcas, Modelos y Tipo de Conector</h3>
+<div class="card p-4 fondoGradiente2">
+    <h3 class="text-center colorGreen">Agrega nuevos vehículos eléctricos</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card fondoGradiente2">
+                <div class="card-body">
+                    <!-- Formulario para agregar una nueva marca -->
+                    <form action="/admin/vermarcas/marca" method="POST" style="text-align: center;">
+                        <label for="marc_nombre" class="form-label letraBold">Ingresa la marca</label>
+                        <input type="text" class="form-control" name="marc_nombre" placeholder="Nombre de marca" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card fondoGradiente2">
+                <div class="card-body">
+                    <!-- Formulario para agregar un nuevo modelo -->
+                    <form action="/admin/vermarcas/modelo" method="POST" style="text-align: center;">
+                        <label for="mod_nombre" class="form-label letraBold">Ingresa el modelo</label>
+                        <input type="text" class="form-control" name="mod_nombre" placeholder="Nombre del modelo" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card fondoGradiente2">
+                <div class="card-body">
+                    <!-- Formulario para agregar un nuevo tipo de conector -->
+                    <form action="/admin/vermarcas/conector" method="POST" style="text-align: center;">
+                        <label for="tc_nombre" class="form-label letraBold">Tipo de conector</label>
+                        <input type="text" class="form-control" name="tc_nombre" placeholder="Tipo de conector" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card fondoGradiente2">
+                <div class="card-body">
+                    <!-- Formulario para agregar una nuevo año -->
+                    <form action="/admin/vermarcas/anio" method="POST" style="text-align: center;">
+                        <label for="n_anio" class="form-label letraBold">Elije el año</label>
+                        <input type="number" class="form-control" name="n_anio" placeholder="Año" min="2005" max="2025" required>
+                        <button class="btn btn-success m-1">Agregar</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<div class="card p-4 fondoGradiente2">
+    <h3 class="text-center colorGreen">Relaciona marcas, modelos y tipos de conector</h3>
     <div class="row">
         <div class="col-sm-4 mb-3 mb-sm-0">
-            <div class="card">
+            <div class="card fondoGradiente2">
                 <div class="card-body">
                     <!-- Formulario para asociar una marca con un modelo y tipo de conector -->
                     <form action="/admin/vermarcas" method="POST">
                         <!-- Desplegable de Marcas -->
                         <div class="form-group my-3">
-                            <label for="id_marca" class="form-label">Marca:</label>
+                            <label for="id_marca" class="form-label letraBold">Marca</label>
                             <select id="id_marca" class="form-control" name="id_marca" required>
                                 <option value="" disabled selected>Selecciona una marca</option>
                                 {{#each marcas}}
@@ -20,7 +71,7 @@
                         </div>
                         <!-- Desplegable de Modelos -->
                         <div class="form-group my-3">
-                            <label for="id_modelo" class="form-label">Modelo:</label>
+                            <label for="id_modelo" class="form-label letraBold">Modelo:</label>
                             <select id="id_modelo" class="form-control" name="id_modelo" required>
                                 <option value="" disabled selected>Selecciona un modelo</option>
                                 {{#each modelos}}
@@ -30,7 +81,7 @@
                         </div>
                         <!-- Desplegable de Tipos de Conector -->
                         <div class="form-group my-3">
-                            <label for="id_tc" class="form-label">Tipo de Conector:</label>
+                            <label for="id_tc" class="form-label letraBold">Tipo de Conector:</label>
                             <select id="id_tc" class="form-control" name="id_tc" required>
                                 <option value="" disabled selected>Selecciona un tipo de conector</option>
                                 {{#each tipos_conectores}}
@@ -38,24 +89,24 @@
                                 {{/each}}
                             </select>
                         </div>
-
                         <div class="form-group d-grid my-3">
-                            <button class="btn btn-success">GUARDAR</button>
+                            <button class="btn btn-success">Guardar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <div class="col-sm-8">
-            <div class="card">
+            <div class="card fondoGradiente2">
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table table-bordered table-header">
+                        <h4 class="text-center colorGreen">Vehículos agregados</h4>
                         <thead>
                             <tr>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Modelo</th>
-                                <th scope="col">Tipo conector</th>
-                                <th scope="col">Acción</th>
+                                <th scope="col" class="fondoGradiente2">Marca</th>
+                                <th scope="col" class="fondoGradiente2">Modelo</th>
+                                <th scope="col" class="fondoGradiente2">Tipo conector</th>
+                                <th scope="col" class="fondoGradiente2">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,58 +126,6 @@
                             </tr>
                             {{/each}}
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card p-4">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Formulario para agregar una nueva marca -->
-                    <form action="/admin/vermarcas/marca" method="POST">
-                        <label for="marc_nombre" class="form-label">Marcas:</label>
-                        <input type="text" class="form-control" name="marc_nombre" placeholder="Nombre de la marca" required>
-                        <button class="btn btn-success m-1">Agregar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Formulario para agregar un nuevo modelo -->
-                    <form action="/admin/vermarcas/modelo" method="POST">
-                        <label for="mod_nombre" class="form-label">Modelos:</label>
-                        <input type="text" class="form-control" name="mod_nombre" placeholder="Nombre del modelo" required>
-                        <button class="btn btn-success m-1">Agregar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Formulario para agregar un nuevo tipo de conector -->
-                    <form action="/admin/vermarcas/conector" method="POST">
-                        <label for="tc_nombre" class="form-label"> Tipo de conector:</label>
-                        <input type="text" class="form-control" name="tc_nombre" placeholder="Tipo de conector" required>
-                        <button class="btn btn-success m-1">Agregar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Formulario para agregar una nuevo año -->
-                    <form action="/admin/vermarcas/anio" method="POST">
-                        <label for="n_anio" class="form-label">Año:</label>
-                        <input type="number" class="form-control" name="n_anio" placeholder="Año" min="2005" max="2025" required>
-                        <button class="btn btn-success m-1">Agregar</button>
-                    </form> 
                 </div>
             </div>
         </div>

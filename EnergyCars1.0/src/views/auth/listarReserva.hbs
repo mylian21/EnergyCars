@@ -4,8 +4,8 @@
         {{#each reservas}}
             <div class="col-md-3">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h3 class="card-title text-uppercase">
+                    <div class="card-body fondoGradiente3">
+                        <h3 class="card-title text-uppercase colorGreen">
                             {{ESTC_NOMBRE}}
                         </h3>
                             <p>{{ESTC_DIRECCION}} - {{ESTC_LOCALIDAD}} </p>
@@ -18,7 +18,7 @@
                         <p class="card-text">
                             Precio: {{RESERVA_IMPORTE}}
                         </p>
-                        <a href="/auth/cancelar/{{ID_RESERVA}}" class="btn btn-danger">CANCELAR</a> {{!-- Fecha min 1:25 --}}
+                        <a href="/auth/cancelar/{{ID_RESERVA}}" class="btn btn-danger">Cancelar</a> {{!-- Fecha min 1:25 --}}
                     </div>
                 </div>
             </div>
@@ -40,42 +40,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Reservas</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
 </head>
 <body>
-    <h1>Listado de Reservas</h1>
+    <h1 class="colorGreen table-header">Historial de reservas</h1>
     {{#if reservas.length}}
-    <table>
+    <table class="table table-bordered table-header">
         <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Hora Inicio</th>
-                <th>Hora Fin</th>
-                <th>Importe</th>
-                <th>Estación</th>
-                <th>Dirección</th>
-                <th>Localidad</th>
-                <th>Estado</th>
+                <th class="fondoGradiente2">Fecha</th>
+                <th class="fondoGradiente2">Hora inicio</th>
+                <th class="fondoGradiente2">Hora fin</th>
+                <th class="fondoGradiente2">Importe</th>
+                <th class="fondoGradiente2">Estación</th>
+                <th class="fondoGradiente2">Dirección</th>
+                <th class="fondoGradiente2">Localidad</th>
+                <th class="fondoGradiente2">Estado</th>
             </tr>
         </thead>
         <tbody>
