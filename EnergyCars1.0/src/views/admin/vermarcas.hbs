@@ -7,7 +7,7 @@
                     <!-- Formulario para agregar una nueva marca -->
                     <form action="/admin/vermarcas/marca" method="POST" style="text-align: center;">
                         <label for="marc_nombre" class="form-label letraBold">Ingresa la marca</label>
-                        <input type="text" class="form-control" name="marc_nombre" placeholder="Nombre de marca" required>
+                        <input type="text" class="form-control fondoGradiente3" name="marc_nombre" placeholder="Nombre de marca" required>
                         <button class="btn btn-success m-1">Agregar</button>
                     </form>
                 </div>
@@ -19,7 +19,7 @@
                     <!-- Formulario para agregar un nuevo modelo -->
                     <form action="/admin/vermarcas/modelo" method="POST" style="text-align: center;">
                         <label for="mod_nombre" class="form-label letraBold">Ingresa el modelo</label>
-                        <input type="text" class="form-control" name="mod_nombre" placeholder="Nombre del modelo" required>
+                        <input type="text" class="form-control fondoGradiente3" name="mod_nombre" placeholder="Nombre del modelo" required>
                         <button class="btn btn-success m-1">Agregar</button>
                     </form>
                 </div>
@@ -31,7 +31,7 @@
                     <!-- Formulario para agregar un nuevo tipo de conector -->
                     <form action="/admin/vermarcas/conector" method="POST" style="text-align: center;">
                         <label for="tc_nombre" class="form-label letraBold">Tipo de conector</label>
-                        <input type="text" class="form-control" name="tc_nombre" placeholder="Tipo de conector" required>
+                        <input type="text" class="form-control fondoGradiente3" name="tc_nombre" placeholder="Tipo de conector" required>
                         <button class="btn btn-success m-1">Agregar</button>
                     </form>
                 </div>
@@ -43,7 +43,7 @@
                     <!-- Formulario para agregar una nuevo año -->
                     <form action="/admin/vermarcas/anio" method="POST" style="text-align: center;">
                         <label for="n_anio" class="form-label letraBold">Elije el año</label>
-                        <input type="number" class="form-control" name="n_anio" placeholder="Año" min="2005" max="2025" required>
+                        <input type="number" class="form-control fondoGradiente3" name="n_anio" placeholder="Año" min="2005" max="2025" required>
                         <button class="btn btn-success m-1">Agregar</button>
                     </form> 
                 </div>
@@ -62,7 +62,7 @@
                         <!-- Desplegable de Marcas -->
                         <div class="form-group my-3">
                             <label for="id_marca" class="form-label letraBold">Marca</label>
-                            <select id="id_marca" class="form-control" name="id_marca" required>
+                            <select id="id_marca" class="form-control fondoGradiente3" name="id_marca" required>
                                 <option value="" disabled selected>Selecciona una marca</option>
                                 {{#each marcas}}
                                 <option value="{{ID_MARCA}}">{{MARC_NOMBRE}}</option>
@@ -72,7 +72,7 @@
                         <!-- Desplegable de Modelos -->
                         <div class="form-group my-3">
                             <label for="id_modelo" class="form-label letraBold">Modelo:</label>
-                            <select id="id_modelo" class="form-control" name="id_modelo" required>
+                            <select id="id_modelo" class="form-control fondoGradiente3" name="id_modelo" required>
                                 <option value="" disabled selected>Selecciona un modelo</option>
                                 {{#each modelos}}
                                 <option value="{{ID_MODELO}}">{{MOD_NOMBRE}}</option>
@@ -82,7 +82,7 @@
                         <!-- Desplegable de Tipos de Conector -->
                         <div class="form-group my-3">
                             <label for="id_tc" class="form-label letraBold">Tipo de Conector:</label>
-                            <select id="id_tc" class="form-control" name="id_tc" required>
+                            <select id="id_tc" class="form-control fondoGradiente3" name="id_tc" required>
                                 <option value="" disabled selected>Selecciona un tipo de conector</option>
                                 {{#each tipos_conectores}}
                                 <option value="{{ID_TC}}">{{TC_NOMBRE}}</option>

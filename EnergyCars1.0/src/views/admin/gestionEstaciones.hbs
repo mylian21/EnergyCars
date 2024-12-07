@@ -3,27 +3,27 @@
         <div class="col-md-6 mx-auto">
             <div class="card fondoGradiente2">
                 <div class="card-body">
-                    <h4 class="card-title text-center mb-4, colorGreen">Registra una estación de carga</h4>
+                    <h3 class="card-title text-center mb-4, colorGreen">Registra una estación de carga</h3>
                     <form action="/admin/gestionEstaciones" method="POST">
                         <div class="form-group my-3">
-                            <label for="estc_nombre" class="form-label">Nombre de la estación:</label>
-                            <input type="text" name="estc_nombre" id="estc_nombre" class="form-control" placeholder="Escribe el nombre de la estación" required>
+                            <label for="estc_nombre" class="form-label letraBold">Nombre de la estación:</label>
+                            <input type="text" name="estc_nombre" id="estc_nombre" class="form-control fondoGradiente3" placeholder="Escribe el nombre de la estación" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="estc_direccion" class="form-label">Dirección:</label>
-                            <input type="text" name="estc_direccion" id="estc_direccion" class="form-control" placeholder="Escribe la dirección" required>
+                            <label for="estc_direccion" class="form-label letraBold">Dirección:</label>
+                            <input type="text" name="estc_direccion" id="estc_direccion" class="form-control fondoGradiente3" placeholder="Escribe la dirección" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="estc_localidad" class="form-label">Localidad:</label>
-                            <input type="text" name="estc_localidad" id="estc_localidad" class="form-control" placeholder="Escribe la localidad donde se encuentra" required>
+                            <label for="estc_localidad" class="form-label letraBold">Localidad:</label>
+                            <input type="text" name="estc_localidad" id="estc_localidad" class="form-control fondoGradiente3" placeholder="Escribe la localidad donde se encuentra" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="estc_cant_surtidores" class="form-label">Cantidad de surtidores:</label>
-                            <input type="number" name="estc_cant_surtidores" id="estc_cant_surtidores" class="form-control" placeholder="Escribe la cantidad de surtidores" required>
+                            <label for="estc_cant_surtidores" class="form-label letraBold">Cantidad de surtidores:</label>
+                            <input type="number" name="estc_cant_surtidores" id="estc_cant_surtidores" class="form-control fondoGradiente3" placeholder="Escribe la cantidad de surtidores" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="id_provincia" class="form-label">Provincia:</label>
-                            <select name="id_provincia" id="id_provincia" class="form-control" required>
+                            <label for="id_provincia" class="form-label letraBold">Provincia:</label>
+                            <select name="id_provincia" id="id_provincia" class="form-control fondoGradiente3" required>
                                 <option value="" disabled selected>Selecciona una provincia</option>
                                 {{#each provincias}}
                                     <option value="{{this.ID_PROVINCIA}}">{{this.PROVINCIA_NOMBRE}}</option>
@@ -31,12 +31,12 @@
                             </select>
                         </div>
                         <div class="form-group my-3">
-                            <label for="estc_latitud" class="form-label">Latitud:</label>
-                            <input type="text" name="estc_latitud" id="estc_latitud" class="form-control" placeholder="Escribe la latitud de ubicación" required>
+                            <label for="estc_latitud" class="form-label letraBold">Latitud:</label>
+                            <input type="text" name="estc_latitud" id="estc_latitud" class="form-control fondoGradiente3" placeholder="Escribe la latitud de ubicación" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="estc_longitud" class="form-label">Longitud:</label>
-                            <input type="text" name="estc_longitud" id="estc_longitud" class="form-control" placeholder="Escribe la longitud de ubicación" required>
+                            <label for="estc_longitud" class="form-label letraBold">Longitud:</label>
+                            <input type="text" name="estc_longitud" id="estc_longitud" class="form-control fondoGradiente3" placeholder="Escribe la longitud de ubicación" required>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-success btn-block">Aceptar</button>
