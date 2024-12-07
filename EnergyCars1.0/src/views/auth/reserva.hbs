@@ -6,7 +6,7 @@
                     <form action="/auth/reserva" method="POST">
                         <h3 class="card-title text-center colorGreen">Reserva</h3>
                         <div class="form-group my-3">
-                            <label for="estc_nom_direcc" class="form-label colorBlue">Estación de carga:</label>
+                            <label for="estc_nom_direcc" class="form-label colorBlue letraBold">Estación de carga:</label>
                             <select id="estc_nom_direcc" class="form-control fondoGradiente3" name="estc_nom_direcc" required>
                                 <option value="" disabled selected>Selecciona un estación</option>
                                 {{#each estacionCarga}}
@@ -16,15 +16,15 @@
                             <input type="hidden" name="ID_ESTC" id="ID_ESTC">
                         </div>
                         <div class="form-group my-3">
-                            <label for="reserva_fecha" class="form-label colorBlue">Fecha:</label>
+                            <label for="reserva_fecha" class="form-label colorBlue letraBold">Fecha:</label>
                             <input type="date" id="reserva_fecha" class="form-control fondoGradiente3" name="reserva_fecha">
                         </div>
                         <div class="form-group my-3">
-                            <label for="reserva_hora_ini" class="form-label colorBlue">Hora de inicio:</label>
+                            <label for="reserva_hora_ini" class="form-label colorBlue letraBold">Hora de inicio:</label>
                             <input type="time" id="reserva_hora_ini" class="form-control fondoGradiente3" name="reserva_hora_ini">
                         </div>
                         <div class="form-group my-3">
-                            <label for="reserva_hora_time" class="form-label colorBlue">Seleccione el tiempo de carga
+                            <label for="reserva_hora_time" class="form-label colorBlue letraBold">Seleccione el tiempo de carga
                                 (minutos):</label>
                             <select id="reserva_hora_time" name="reserva_hora_time" class="fondoGradiente3"
                                 onchange="calcularHoraFin(), costoEstimado()" required>
@@ -35,12 +35,12 @@
                             </select>
                         </div>
                         <div class="form-group my-3">
-                            <label for="reserva_hora_fin" class="form-label colorBlue">Hora de finalización:</label>
+                            <label for="reserva_hora_fin" class="form-label colorBlue letraBold">Hora de finalización:</label>
                             <input type="text" id="reserva_hora_fin" class="form-control fondoGradiente3" name="reserva_hora_fin"
                                 readonly>
                         </div>
                         <div class="form-group my-3">
-                            <label for="reserva_importe" class="form-label colorBlue">Importe:</label>
+                            <label for="reserva_importe" class="form-label colorBlue letraBold">Importe:</label>
                             <input type="text" id="reserva_importe" class="form-control fondoGradiente3" name="reserva_importe"
                                 readonly>
                         </div>
