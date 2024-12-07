@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h4>${estacion.ESTC_DIRECCION}</h4>
                             <h5>${estacion.ESTC_LOCALIDAD}</h5>
                             <p>Cantidad de surtidores: ${estacion.cantidad_surtidores}</p>
-                            <form action="/reserva/estacion/${estacion.ID_ESTC}"> <button class="btn btn-success">RESERVAR</button> </form>
+                            <form action="/reserva/estacion/${estacion.ID_ESTC}"> <button class="btn btn-success">Reservar</button> </form>
                         </div>
                     `);
             });
