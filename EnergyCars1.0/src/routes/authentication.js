@@ -125,6 +125,33 @@ router.get('/listarReserva', isLoggedIn, async (req, res) => {
     res.render('auth/listarReserva', { reservas })
 });
 
+router.get('/historialReserva', isLoggedIn, async (req, res) => {
+    const { ID_USER } = req.user;
+    const reservas = await pool.query(`
+        SELECT 
+            reservas.ID_RESERVA,
+            reservas.RESERVA_FECHA,
+            reservas.RESERVA_HORA_INI,
+            reservas.RESERVA_HORA_FIN,
+            reservas.RESERVA_IMPORTE,
+            estaciones_carga.ESTC_NOMBRE,
+            estaciones_carga.ESTC_DIRECCION,
+            estaciones_carga.ESTC_LOCALIDAD,
+            estado_reservas.EST_RES_DESCRIP
+        FROM 
+            energycars.reservas
+        JOIN 
+            energycars.surtidores ON reservas.ID_SURTIDOR = surtidores.ID_SURTIDOR
+        JOIN 
+            energycars.estaciones_carga ON surtidores.ID_ESTC = estaciones_carga.ID_ESTC
+        JOIN 
+            energycars.estado_reservas ON reservas.ID_EST_RES = estado_reservas.ID_EST_RES
+        WHERE
+            reservas.ID_USER = ?
+    `, [ID_USER]);
+    res.render('auth/historialReserva', { reservas })
+});
+
 router.get('/eliminar/:ID_RESERVA', isLoggedIn, async (req, res) => {
     const { ID_RESERVA } = req.params;
     await pool.query('DELETE FROM reservas WHERE ID_RESERVA = ?', [ID_RESERVA]);
@@ -174,11 +201,9 @@ router.get('/reserva/estacion/:ID_ESTC', isLoggedIn, async (req, res) => {
     const surtidor = await pool.query('SELECT * FROM surtidores');
     const tiempo_carga = await pool.query('SELECT * FROM tiempo_carga')
     res.render('auth/reservaMapa', { estacionCargaID_ESTC: estacionCargaID_ESTC[0], surtidor, tiempo_carga });
-    console.log({ estacionCargaID_ESTC })
 })
 
 router.post('/reserva/estacion/:ID_ESTC', isLoggedIn, async (req, res) => {
-    console.log(req.body);
     const { ID_USER } = req.user;
     const { ID_ESTC } = req.params;
     const { reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe } = req.body;

@@ -1,13 +1,14 @@
 <div class="container p-4">
     <div class="row">
-        {{#each reservas}}
+        {{#if (mayor EST_RES_DESCRIP 1)}}
+            {{#each reservas}}
             <div class="col-md-3">
                 <div class="card text-center">
                     <div class="card-body fondoGradiente3">
                         <h3 class="card-title text-uppercase colorGreen">
                             {{ESTC_NOMBRE}}
                         </h3>
-                            <p>{{ESTC_DIRECCION}} - {{ESTC_LOCALIDAD}} </p>
+                        <p>{{ESTC_DIRECCION}} - {{ESTC_LOCALIDAD}} </p>
                         <h6 class="card-subtitle mb-2 text-body-secondary">
                             Fecha: {{RESERVA_FECHA}}
                         </h6>
@@ -17,63 +18,20 @@
                         <p class="card-text">
                             Precio: {{RESERVA_IMPORTE}}
                         </p>
-                        <a href="/auth/cancelar/{{ID_RESERVA}}" class="btn btn-danger">Cancelar</a> {{!-- Fecha min 1:25 --}}
+                        <a href="/auth/cancelar/{{ID_RESERVA}}" class="btn btn-danger">Cancelar</a> {{!-- Fecha min 1:25
+                        --}}
                     </div>
                 </div>
             </div>
+            {{/each}}
         {{else}}
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay reservas.</p>
-                    <a href="/auth/reserva">Agrega una.</a>
-                </div>
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay reservas.</p>
+                <a href="/auth/reserva">Agrega una.</a>
             </div>
-        {{/each}}
+        </div>
+        {{/if}}
 
     </div>
 </div>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Reservas</title>
-</head>
-<body>
-    <h1 class="colorGreen table-header">Historial de reservas</h1>
-    {{#if reservas.length}}
-    <table class="table table-bordered table-header">
-        <thead>
-            <tr>
-                <th class="fondoGradiente2">Fecha</th>
-                <th class="fondoGradiente2">Hora inicio</th>
-                <th class="fondoGradiente2">Hora fin</th>
-                <th class="fondoGradiente2">Importe</th>
-                <th class="fondoGradiente2">Estación</th>
-                <th class="fondoGradiente2">Dirección</th>
-                <th class="fondoGradiente2">Localidad</th>
-                <th class="fondoGradiente2">Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each reservas}}
-            <tr>
-                <td>{{this.RESERVA_FECHA}}</td>
-                <td>{{this.RESERVA_HORA_INI}}</td>
-                <td>{{this.RESERVA_HORA_FIN}}</td>
-                <td>{{this.RESERVA_IMPORTE}}</td>
-                <td>{{this.ESTC_NOMBRE}}</td>
-                <td>{{this.ESTC_DIRECCION}}</td>
-                <td>{{this.ESTC_LOCALIDAD}}</td>
-                <td>{{this.EST_RES_DESCRIP}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    {{else}}
-    <p>No se encontraron reservas registradas.</p>
-    {{/if}}
-</body>
-</html>
-

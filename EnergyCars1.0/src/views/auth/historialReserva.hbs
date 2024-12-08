@@ -1,0 +1,33 @@
+<h1 class="colorGreen table-header">Historial de reservas</h1>
+{{#if reservas.length}}
+<table class="table table-bordered table-header">
+    <thead>
+        <tr>
+            <th class="fondoGradiente2">Fecha</th>
+            <th class="fondoGradiente2">Hora inicio</th>
+            <th class="fondoGradiente2">Hora fin</th>
+            <th class="fondoGradiente2">Importe</th>
+            <th class="fondoGradiente2">Estación</th>
+            <th class="fondoGradiente2">Dirección</th>
+            <th class="fondoGradiente2">Localidad</th>
+            <th class="fondoGradiente2">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each reservas}}
+        <tr>
+            <td>{{RESERVA_FECHA}}</td>
+            <td>{{RESERVA_HORA_INI}}</td>
+            <td>{{RESERVA_HORA_FIN}}</td>
+            <td>{{RESERVA_IMPORTE}}</td>
+            <td>{{ESTC_NOMBRE}}</td>
+            <td>{{ESTC_DIRECCION}}</td>
+            <td>{{ESTC_LOCALIDAD}}</td>
+            <td>{{EST_RES_DESCRIP}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p>No se encontraron reservas registradas.</p>
+{{/if}}
