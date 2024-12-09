@@ -80,9 +80,7 @@
             <td>{{ESTC_LOCALIDAD}}</td>
             <td>{{EST_RES_DESCRIP}}</td>
             <td>
-                <form action="/gestionReservas/eliminar{{this.ID_ESTC}}" class="btn btn-danger btn-sm"
-                    onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Cancelar Reserva</button>
-                </form>
+                <a href="/admin/gestionReservas/cancelar/{{ID_RESERVA}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Cancelar Reserva</a>
             </td>
         </tr>
         {{/each}}

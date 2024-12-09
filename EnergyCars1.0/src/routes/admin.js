@@ -77,6 +77,12 @@ router.get('/gestionReservas', isLoggedIn, async (req, res) => {
     }
 });
 
+router.get('/gestionReservas/cancelar/:ID_RESERVA', isLoggedIn, async (req, res) =>{
+    const {ID_RESERVA} = req.params;
+    await pool.query(`UPDATE reservas SET ID_EST_RES = 3 WHERE ID_RESERVA = ?`,[ID_RESERVA]);
+    res.redirect('/admin/gestionReservas');
+});
+
 
 router.get('/vermarcas', isLoggedIn, async (req, res) => {
     const vehiculos = await pool.query('SELECT * FROM vehiculos');
