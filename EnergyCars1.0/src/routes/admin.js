@@ -39,9 +39,44 @@ router.post('/editarAdminUser/:ID_USER', isLoggedIn, async (req,res) => {
     res.redirect('/admin');
 });
 
-router.get('/reservas', isLoggedIn, async (req,res) => {
-    res.render('admin/gestionReservas');
+// Gestion de Reservas
+// router.get('/gestionReservas', isLoggedIn, async (req,res) => {
+//     res.render('admin/gestionReservas');
+// });
+
+router.get('/gestionReservas', isLoggedIn, async (req, res) => {
+    try {
+        const reservas = await pool.query(`
+            SELECT 
+                reservas.ID_RESERVA,
+                reservas.RESERVA_FECHA,
+                reservas.RESERVA_HORA_INI,
+                reservas.RESERVA_HORA_FIN,
+                reservas.RESERVA_IMPORTE,
+                estaciones_carga.ESTC_NOMBRE,
+                estaciones_carga.ESTC_DIRECCION,
+                estaciones_carga.ESTC_LOCALIDAD,
+                estado_reservas.EST_RES_DESCRIP,
+                usuarios.USER_CORREO
+            FROM 
+                reservas
+            JOIN 
+                surtidores ON reservas.ID_SURTIDOR = surtidores.ID_SURTIDOR
+            JOIN 
+                estaciones_carga ON surtidores.ID_ESTC = estaciones_carga.ID_ESTC
+            JOIN 
+                estado_reservas ON reservas.ID_EST_RES = estado_reservas.ID_EST_RES
+            JOIN 
+                usuario usuarios ON reservas.ID_USER = usuarios.ID_USER
+        `);
+
+        res.render('admin/gestionReservas', { reservas });
+    } catch (error) {
+        console.error('Error al obtener las reservas:', error);
+        res.status(500).send('Error al obtener las reservas.');
+    }
 });
+
 
 router.get('/vermarcas', isLoggedIn, async (req, res) => {
     const vehiculos = await pool.query('SELECT * FROM vehiculos');
