@@ -181,7 +181,7 @@ router.post('/reserva', isLoggedIn, async (req, res) => {
     const { ID_USER } = req.user;
     const { estc_nom_direcc, reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe, ID_ESTC } = req.body;
     const estadoReserva = await pool.query('SELECT ID_EST_RES FROM estado_reservas WHERE ID_EST_RES = 1');
-    const elegirSurt = await elegirSurtidor(ID_ESTC);
+    const elegirSurt = await elegirSurtidor(estc_nom_direcc);
     try {
         //Verificar si hay reserva disponible
         const reservaDisponible = await verificarReserva(estadoReserva, elegirSurt, reserva_fecha, reserva_hora_ini, reserva_hora_fin)
