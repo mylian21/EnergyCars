@@ -1,6 +1,26 @@
 <h1 class="colorGreen table-header">Reservas</h1>
+<div style="position: relative; width: 100%; max-width: 400px;">
+    <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar por usuario o n° de reserva"
+        style="width: 100%; padding-right: 40px;"
+        class="form-control fondoGradiente3"
+    />
+    <i class="fas fa-search" 
+       style="
+            position: absolute; 
+            right: 10px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            color: #6c757d; 
+            font-size: 1.2rem; 
+            cursor: pointer;">
+    </i>
+</div>
+<br>
 {{#if reservas.length}}
-<table class="table table-bordered table-header">
+<table id="tabla-reservas" class="table table-bordered table-header">
     <thead>
         <tr>
             <th class="fondoGradiente2 table-header">N° de Reserva</th>
@@ -30,7 +50,7 @@
             <td>{{ESTC_LOCALIDAD}}</td>
             <td>{{EST_RES_DESCRIP}}</td>
             <td>
-                <a href="/admin/gestionReservas/cancelar/{{ID_RESERVA}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Cancelar Reserva</a>
+                <a href="/admin/gestionReservas/cancelar/{{ID_RESERVA}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Cancelar reserva</a>
             </td>
         </tr>
         {{/each}}
@@ -39,3 +59,15 @@
 {{else}}
 <p>No se encontraron reservas registradas.</p>
 {{/if}}
+
+<script>
+    document.getElementById('buscador').addEventListener('input', function () {
+        const filtro = this.value.toLowerCase();
+        const filas = document.querySelectorAll('#tabla-reservas tbody tr'); 
+
+        filas.forEach((fila) => {
+            const textoFila = fila.textContent.toLowerCase();
+            fila.style.display = textoFila.includes(filtro) ? '' : 'none';
+        });
+    });
+</script>
