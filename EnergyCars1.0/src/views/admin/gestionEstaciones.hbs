@@ -69,49 +69,41 @@
     </i>
 </div>
 <br>
-<div>
-<table class="table table-bordered table-header">
+<table id="tabla-estaciones" class="table table-bordered table-header">
     <thead>
         <tr>
-            <th scope="col" class="fondoGradiente2 table-header">#</th>
+            <th scope="col" class="fondoGradiente2 table-header">ID</th>
             <th scope="col" class="fondoGradiente2 table-header">Nombre</th>
             <th scope="col" class="fondoGradiente2 table-header">Dirección</th>
             <th scope="col" class="fondoGradiente2 table-header">Localidad</th>
             <th scope="col" class="fondoGradiente2 table-header">Provincia</th>
-            <th scope="col" class="fondoGradiente2 table-header">N° surtidores</th>
+            <th scope="col" class="fondoGradiente2 table-header">Surtidores.</th>
             <th scope="col" class="fondoGradiente2 table-header">Acción</th>
         </tr>
     </thead>
-    <tbody id="tabla-estaciones_carga">
-        {{#if estaciones_carga}}
-            {{#each estaciones_carga}}
-                <tr>
-                    <th scope="row">{{ID_ESTC}}</th>
-                    <td>{{ESTC_NOMBRE}}</td>
-                    <td>{{ESTC_DIRECCION}}</td>
-                    <td>{{ESTC_LOCALIDAD}}</td>
-                    <td>{{PROVINCIA_NOMBRE}}</td>
-                    <td>{{ESTC_CANT_SURTIDORES}}</td>
-                    <td>
-                        <form action="/reserva/estacion/{{ID_ESTC}}">
-                            <button class="btn btn-success">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            {{/each}}
-        {{else}}
-            <tr>
-                <td colspan="7">No hay estaciones disponibles.</td>
-            </tr>
-        {{/if}}
+    <tbody>
+        {{#each estaciones}}
+        <tr>
+            <td>{{this.ID_ESTC}}</td>
+            <td>{{this.ESTC_NOMBRE}}</td>
+            <td>{{this.ESTC_DIRECCION}}</td>
+            <td>{{this.ESTC_LOCALIDAD}}</td>
+            <td>{{this.PROVINCIA_NOMBRE}}</td>
+            <td>{{this.ESTC_CANT_SURTIDORES}}</td>
+            <td>
+                <form action="/gestionEstaciones/eliminar{{this.ID_ESTC}}" class="btn btn-danger btn-sm"
+                    onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
     </tbody>
 </table>
-</div>
 
 <script>
     document.getElementById('buscador').addEventListener('input', function () {
         const filtro = this.value.toLowerCase();
-        const filas = document.querySelectorAll('#tabla-estaciones_carga tr');
+        const filas = document.querySelectorAll('#tabla-estaciones tbody tr'); // Selector actualizado
 
         filas.forEach((fila) => {
             const textoFila = fila.textContent.toLowerCase();
@@ -119,3 +111,4 @@
         });
     });
 </script>
+
