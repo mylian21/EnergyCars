@@ -84,15 +84,14 @@
     <tbody>
         {{#each estaciones}}
         <tr>
-            <td>{{this.ID_ESTC}}</td>
-            <td>{{this.ESTC_NOMBRE}}</td>
-            <td>{{this.ESTC_DIRECCION}}</td>
-            <td>{{this.ESTC_LOCALIDAD}}</td>
-            <td>{{this.PROVINCIA_NOMBRE}}</td>
-            <td>{{this.ESTC_CANT_SURTIDORES}}</td>
+            <td>{{ID_ESTC}}</td>
+            <td>{{ESTC_NOMBRE}}</td>
+            <td>{{ESTC_DIRECCION}}</td>
+            <td>{{ESTC_LOCALIDAD}}</td>
+            <td>{{PROVINCIA_NOMBRE}}</td>
+            <td>{{ESTC_CANT_SURTIDORES}}</td>
             <td>
-                <form action="/gestionEstaciones/eliminar{{this.ID_ESTC}}" class="btn btn-danger btn-sm"
-                    onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Eliminar</button>
+                <a href="/admin/gestionEstaciones/eliminar/{{ID_ESTC}}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta estación?');">Eliminar</a>
                 </form>
             </td>
         </tr>
