@@ -135,35 +135,6 @@ router.get('/gestionEstaciones', async (req, res) => {
     }
 });
 
-//Ruta listado estaciones de carga
-
-router.get('/gestionEstaciones', isLoggedIn, async (req, res) => {
-    try {
-        const estaciones_carga = await pool.query(`
-            SELECT
-                estaciones_carga.ID_ESTC,
-                estaciones_carga.ESTC_NOMBRE,
-                estaciones_carga.ESTC_DIRECCION,
-                estaciones_carga.ESTC_LOCALIDAD,
-                provincias.PROVINCIA_NOMBRE,
-                estaciones_carga.ESTC_CANT_SURTIDORES,
-                estaciones_carga.ESTC_LATITUD,
-                estaciones_carga.ESTC_LONGITUD
-            FROM
-                estaciones_carga
-            JOIN
-                provincias ON estaciones_carga.ID_PROVINCIA = provincias.ID_PROVINCIA
-        `);
-        console.log(estaciones_carga); // Depuración: Verifica los datos aquí
-        res.render('admin/gestionEstaciones', { estaciones_carga });
-    } catch (error) {
-        console.error('Error al obtener estaciones:', error);
-        res.status(500).send('Error al cargar estaciones');
-    }
-});
-
-
-
 // Ruta para crear una estación de carga
 router.post('/gestionEstaciones', async (req, res) => {
     const {
@@ -208,6 +179,70 @@ router.post('/gestionEstaciones', async (req, res) => {
         res.redirect('/admin/gestionEstaciones');
     }
 });
+
+// Ruta para listar las estaciones de carga
+router.get('/gestionEstaciones', async (req, res) => {
+    try {
+        const estaciones = await pool.query(`
+        SELECT
+            estaciones_carga.ID_ESTC,
+            estaciones_carga.ESTC_NOMBRE,
+            estaciones_carga.ESTC_DIRECCION,
+            estaciones_carga.ESTC_LOCALIDAD,
+            provincias.PROVINCIA_NOMBRE,
+            estaciones_carga.ESTC_CANT_SURTIDORES,
+            estaciones_carga.ESTC_LATITUD,
+            estaciones_carga.ESTC_LONGITUD
+        FROM
+            estaciones_carga
+        JOIN
+            provincias ON estaciones_carga.ID_PROVINCIA = provincias.ID_PROVINCIA
+        `);
+        console.log('Estaciones obtenidas:', estaciones);
+        res.render('gestionEstaciones', { estaciones });
+    } catch (error) {
+        console.error('Error al obtener las estaciones:', error);
+        res.status(500).send('Error al obtener las estaciones.');
+    }
+});
+
+router.post('/gestionEstaciones/eliminar/:ID_ESTC', isLoggedIn, async (req,res) => {
+    const {ID_ESTC} = req.params;
+    console.log({ID_ESTC});
+    await pool.query('DELETE FROM estaciones_carga WHERE ID_ESTC = ?', [ID_ESTC]);
+    req.flash('auto_success', 'ESTACION ELIMINADA')
+    res.redirect('/admin');
+});
+
+// // Ruta para redirigir al formulario de edición
+// router.get('/estaciones/editar/:id', async (req, res) => {
+//     const { id } = req.params;
+//     try {
+//         const [estacion] = await pool.query('SELECT * FROM estaciones_carga WHERE ID_ESTC = ?', [id]);
+//         res.render('editarEstacion', { estacion });
+//     } catch (error) {
+//         console.error('Error al obtener la estación para editar:', error);
+//         res.status(500).send('Error al obtener la estación.');
+//     }
+// });
+
+// // Ruta para actualizar una estación
+// router.post('/estaciones/editar/:id', async (req, res) => {
+//     const { id } = req.params;
+//     const { ESTC_NOMBRE, ESTC_DIRECCION, ESTC_LOCALIDAD, ID_PROVINCIA, ESTC_CANT_SURTIDORES, ESTC_LATITUD, ESTC_LONGITUD } = req.body;
+//     try {
+//         await pool.query(
+//             'UPDATE estaciones_carga SET ? WHERE ID_ESTC = ?',
+//             [{ ESTC_NOMBRE, ESTC_DIRECCION, ESTC_LOCALIDAD, ID_PROVINCIA, ESTC_CANT_SURTIDORES, ESTC_LATITUD, ESTC_LONGITUD }, id]
+//         );
+//         res.redirect('/estaciones');
+//     } catch (error) {
+//         console.error('Error al actualizar la estación:', error);
+//         res.status(500).send('Error al actualizar la estación.');
+//     }
+// });
+
+
 //Ruta para gestionar transacciones
 router.get('/gestiontransacciones', async(req, res)=>{
     res.render('admin/gestiontransacciones');
