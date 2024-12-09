@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const marker = L.marker([estacion.ESTC_LATITUD, estacion.ESTC_LONGITUD], {icon: iconEnergy})
                     .addTo(map)
                     .bindPopup(`
-                        <div class = "container">
-                            <h3>${estacion.ESTC_NOMBRE}</h3>
-                            <h4>${estacion.ESTC_DIRECCION}</h4>
-                            <h5>${estacion.ESTC_LOCALIDAD}</h5>
-                            <p>Cantidad de surtidores: ${estacion.cantidad_surtidores}</p>
+                        <div class = "">
+                            <h4 class= "colorGreen">${estacion.ESTC_NOMBRE}</h4>
+                            <h6>${estacion.ESTC_DIRECCION}</h6>
+                            <h6>${estacion.ESTC_LOCALIDAD}</h6>
+                            <h6>Cantidad de surtidores: ${estacion.cantidad_surtidores}</h6>
                             <form action="/reserva/estacion/${estacion.ID_ESTC}"> <button class="btn btn-success">Reservar</button> </form>
                         </div>
                     `);
