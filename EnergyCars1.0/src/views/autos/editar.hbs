@@ -7,7 +7,7 @@
                     <form action="/autos/editar/{{editarAutos.ID_VEHICULO}}" method="POST">
                         <div class="form-group my-3">
                             <label for="marc_nombre" class="form-label colorBlue letraBold">Marca:</label>
-                            <select id="marc_nombre" class="form-control" name="veh_marca" required>
+                            <select id="marc_nombre" class="form-control fondoGradiente3" name="veh_marca" required>
                                 <option value="" disabled>Seleccione una marca</option>
                                 {{#each marcas }}
                                 <option value="{{ID_MARCA}}" {{#ifCond ID_MARCA ../editarAutos.ID_MARCA}}selected
@@ -18,13 +18,13 @@
                         </div>
                         <div class="form-group my-3">
                             <label for="mod_nombre" class="form-label colorBlue letraBold">Modelo:</label>
-                            <select id="mod_nombre" class="form-control" name="veh_modelo">
+                            <select id="mod_nombre" class="form-control fondoGradiente3" name="veh_modelo">
                                 <option value="" disabled selected>Selecciona un modelo</option>
                             </select>
                         </div>
                         <div class="form-group my-3">
                             <label for="veh_anio" class="form-label colorBlue letraBold">Año:</label>
-                            <select type="text" id="veh_anio" class="form-control" name="veh_anio">
+                            <select type="text" id="veh_anio" class="form-control fondoGradiente3" name="veh_anio">
                                 <option value="" disabled selected>Selecciona un año</option>
                                 {{#each anios}}
                                 <option value="{{this.ID_ANIO}}" {{#ifCond this.ID_ANIO ../editarAutos.ID_ANIO}}selected{{/ifCond}}>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group my-3">
                             <label for="veh_patente" class="form-label colorBlue letraBold">Patente:</label>
-                            <input type="text" value="{{editarAutos.VEH_PATENTE}}" id="veh_patente" class="form-control"
+                            <input type="text" value="{{editarAutos.VEH_PATENTE}}" id="veh_patente" class="form-control fondoGradiente3"
                                 name="veh_patente" placeholder="Ej: ABC-123">
                         </div>
                         <div class="form-group row gx-3 my-3">

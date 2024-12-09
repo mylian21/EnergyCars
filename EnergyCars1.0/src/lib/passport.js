@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const pool = require('../database'); // Traemos la base de datos para usarla
+const pool = require('../database'); 
 const helpers = require('../lib/helpers');
 
 passport.use('local.acceso', new LocalStrategy({
@@ -40,12 +40,12 @@ passport.use('local.registro', new LocalStrategy({
     };
     nuevoUsuario.user_contrasenia = await helpers.encryptContrasenia(user_contrasenia);
     const resultado = await pool.query('INSERT INTO usuario SET ?', [nuevoUsuario]);
-    nuevoUsuario.ID_USER = resultado.insertId;  // Cambiado a ID_USER
+    nuevoUsuario.ID_USER = resultado.insertId;  
     return done(null, nuevoUsuario);
 }));
 
 passport.serializeUser((user, done) => {
-    done(null, user.ID_USER); // Ahora estamos usando ID_USER consistentemente
+    done(null, user.ID_USER);
 });
 
 passport.deserializeUser(async (ID_USER, done) => {

@@ -101,7 +101,7 @@
 <script>
     document.getElementById('buscador').addEventListener('input', function () {
         const filtro = this.value.toLowerCase();
-        const filas = document.querySelectorAll('#tabla-estaciones tbody tr'); // Selector actualizado
+        const filas = document.querySelectorAll('#tabla-estaciones tbody tr'); 
 
         filas.forEach((fila) => {
             const textoFila = fila.textContent.toLowerCase();

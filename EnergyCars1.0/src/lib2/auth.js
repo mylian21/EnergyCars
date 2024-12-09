@@ -96,11 +96,11 @@ async function costoCarga(tiempo, kw) {
             const precioTotal = priceData.PRECIO_KW * tiempo;
             return { precio: precioTotal };
         } else {
-            return null; // O puedes lanzar un error aquí, según tus necesidades
+            return null; 
         }
     } catch (error) {
         console.error(error);
-        throw error; // O maneja el error de otra manera, como devolver un objeto de error
+        throw error; 
     }
 }
 

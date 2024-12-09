@@ -123,7 +123,7 @@ router.post('/editar/:ID_VEHICULO', isLoggedIn, async (req, res) => {
     const { ID_VEHICULO } = req.params;
     const { veh_marca, veh_modelo, veh_anio, veh_patente } = req.body;
     const editarAutos = {
-        ID_MARCA_MODELO: veh_modelo, // Asegúrate que este campo exista en la tabla
+        ID_MARCA_MODELO: veh_modelo, 
         ID_ANIO: veh_anio,
         VEH_PATENTE: veh_patente,
         ID_USER: req.user.ID_USER

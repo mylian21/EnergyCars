@@ -7,7 +7,7 @@ const pool = require('../database');
 const helpers = require('../lib/helpers');
 const { verificarReserva, hacerReserva, elegirSurtidor, buscarEstacion } = require('../lib2/auth');
 
-// REDERIZAR EL FORMULRIO
+// RENDERIZA EL FORMULRIO
 router.get('/registro', isnoLoggedIn, (req, res) => {
     res.render('auth/registro')
 });
@@ -254,9 +254,9 @@ router.post('/editarUser/:ID_USER', isLoggedIn, async (req, res) => {
 router.get('/cerrar', (req, res, next) => {
     req.logout((err) => {
         if (err) {
-            return next(err);  // Maneja el error si es necesario
+            return next(err);  
         }
-        res.redirect('/acceso');  // Redirecciona al usuario después del logout
+        res.redirect('/acceso');  
     });
 });
 

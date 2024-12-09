@@ -50,8 +50,8 @@ app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.use(passport.initialize()); //INICIAR PASSPORT
-app.use(passport.session()); // INICIAR SECCION DE PASSPORT
+app.use(passport.initialize()); //INICIA PASSPORT
+app.use(passport.session()); // INICIA SECCION DE PASSPORT
 
 //Global Variables
 app.use((req, res, next) => {

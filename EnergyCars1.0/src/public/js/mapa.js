@@ -42,9 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     `);
             });
         });
-    
-        
-    //L.marker([-34,5813188, -58,4217869], {icon: iconEnergy}).addTo(map);
 });
 
 

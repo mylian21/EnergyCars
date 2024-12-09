@@ -36,10 +36,6 @@ router.post('/editarAdminUser/:ID_USER', isLoggedIn, async (req,res) => {
     res.redirect('/admin');
 });
 
-// Gestion de Reservas
-// router.get('/gestionReservas', isLoggedIn, async (req,res) => {
-//     res.render('admin/gestionReservas');
-// });
 
 router.get('/gestionReservas', isLoggedIn, async (req, res) => {
     try {
@@ -220,7 +216,7 @@ router.post('/gestionEstaciones', async (req, res) => {
         for (let i = 0; i < estc_cant_surtidores; i++) {
             await pool.query(
                 'INSERT INTO surtidores (SURT_ESTADO, ID_ESTC) VALUES (?, ?)', 
-                [1, idEstacion]  // El estado se establece como 1 y se usa el ID de la estación
+                [1, idEstacion]  
             );
         }
 
