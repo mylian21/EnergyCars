@@ -110,6 +110,7 @@ router.get('/listarReserva', isLoggedIn, async (req, res) => {
             estaciones_carga.ESTC_NOMBRE,
             estaciones_carga.ESTC_DIRECCION,
             estaciones_carga.ESTC_LOCALIDAD,
+            estado_reservas.ID_EST_RES,
             estado_reservas.EST_RES_DESCRIP
         FROM 
             energycars.reservas
@@ -120,7 +121,7 @@ router.get('/listarReserva', isLoggedIn, async (req, res) => {
         JOIN 
             energycars.estado_reservas ON reservas.ID_EST_RES = estado_reservas.ID_EST_RES
         WHERE
-            reservas.ID_USER = ?
+            reservas.ID_USER = ? AND estado_reservas.ID_EST_RES = 2
     `, [ID_USER]);
     res.render('auth/listarReserva', { reservas })
 });
@@ -174,10 +175,11 @@ router.get('/reserva', isLoggedIn, async (req, res) => {
     res.render('auth/reserva', { estacionCarga, surtidor, tiempo_carga });
 });
 
+
 router.post('/reserva', isLoggedIn, async (req, res) => {
     console.log(req.body);
     const { ID_USER } = req.user;
-    const { reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe, ID_ESTC } = req.body;
+    const { estc_nom_direcc, reserva_fecha, reserva_hora_ini, reserva_hora_fin, reserva_importe, ID_ESTC } = req.body;
     const estadoReserva = await pool.query('SELECT ID_EST_RES FROM estado_reservas WHERE ID_EST_RES = 1');
     const elegirSurt = await elegirSurtidor(ID_ESTC);
     try {
