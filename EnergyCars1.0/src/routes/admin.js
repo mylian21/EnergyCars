@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const pool =  require('../database');
-const {isLoggedIn} = require('../lib/auth')
+const {isLoggedIn} = require('../lib/auth');
+const helpers = require('../lib/helpers');
+
 
 router.get('/', isLoggedIn, async (req, res) => {
     const adminuser = await pool.query('SELECT * FROM usuario WHERE ID_USER > 1 ');
@@ -25,17 +27,12 @@ router.get('/editarAdminUser/:ID_USER', isLoggedIn, async (req,res) => {
 
 router.post('/editarAdminUser/:ID_USER', isLoggedIn, async (req,res) => {
     const { ID_USER } = req.params;
-    console.log(req.params);
-    console.log(req.body);
-    const { user_correo, user_telefono } = req.body;
-    console.log({user_correo});
-    console.log({user_telefono});
+    const { user_contrasenia } = req.body;
     const editarAdminUser = {
-        user_correo,
-        user_telefono
+        user_contrasenia: await helpers.encryptContrasenia(user_contrasenia)
     };
     await pool.query('UPDATE usuario set ? WHERE ID_USER = ?', [editarAdminUser, ID_USER]);
-    req.flash('auto_success', 'Usuario actualizado con éxito');
+    req.flash('auto_success', 'Contraseña restablecida');
     res.redirect('/admin');
 });
 
