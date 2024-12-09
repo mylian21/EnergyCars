@@ -1,6 +1,6 @@
 <div class="container p-4">
     <div class="row">
-        {{#if (mayor EST_RES_DESCRIP 1)}}
+        {{!-- {{#if (EST_RES_DESCRIP)}} --}}
             {{#each reservas}}
             <div class="col-md-3">
                 <div class="card text-center">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            {{/each}}
+            {{!-- {{/each}} --}}
         {{else}}
         <div class="col-md-4 mx-auto">
             <div class="card card-body text-center">
@@ -31,7 +31,9 @@
                 <a href="/auth/reserva">Agrega una.</a>
             </div>
         </div>
-        {{/if}}
+        {{/each}}
+
+        {{!-- {{/if}} --}}
 
     </div>
 </div>
